@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=4 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://b0ri6u8h5mgcw" path="res://images/menu.png" id="2_0xm2m"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
@@ -16,18 +19,36 @@ position = Vector2(-50, 340)
 [node name="Spawner3" type="Node2D" parent="Spawners"]
 position = Vector2(-50, 560)
 
-[node name="EndPoints" type="Node2D" parent="."]
-
-[node name="EndPoint1" type="Node2D" parent="EndPoints"]
-position = Vector2(1205, 60)
-
-[node name="EndPoint2" type="Node2D" parent="EndPoints"]
-position = Vector2(1205, 340)
-
-[node name="EndPoint3" type="Node2D" parent="EndPoints"]
-position = Vector2(1205, 560)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Background"]
+position = Vector2(576, 124)
+scale = Vector2(1150, 75)
+mesh = SubResource("QuadMesh_ig7tw")
+
+[node name="MeshInstance2D2" type="MeshInstance2D" parent="Background"]
+position = Vector2(574, 339)
+scale = Vector2(1150, 75)
+mesh = SubResource("QuadMesh_ig7tw")
+
+[node name="MeshInstance2D3" type="MeshInstance2D" parent="Background"]
+position = Vector2(577, 559)
+scale = Vector2(1150, 75)
+mesh = SubResource("QuadMesh_ig7tw")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 989.0
+offset_top = 1.0
+offset_right = 1152.0
+offset_bottom = 39.0
+
+[node name="menu" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(572, 316)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_0xm2m")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

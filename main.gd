@@ -10,7 +10,15 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	timer.wait_time = global.SpawnTime
+	$Label.text = str(global.Points) + " calories"
+	
+	if Input.is_action_just_pressed("accessmenu"):
+		if $menu.visible == false:
+			$menu.visible = true
+		else:
+			$menu.visible = false
+	
 
 
 func _on_spawn_timer_timeout() -> void:
@@ -23,14 +31,21 @@ func spawn():
 	var image := randi_range(1,3)
 	var instance = preload("res://sushi.tscn").instantiate()
 	if image == 1:
-		instance.get_node("Image").texture = load("res://images/download (1).jpg")
+		instance.texture = load("res://images/download (1).jpg")
 		instance.set_meta("type", 1)
+		instance.set_meta("points", 1)
 	elif image == 2:
-		instance.get_node("Image").texture = load("res://images/nigiri-sushi-1200.jpg")
+		instance.texture = load("res://images/nigiri-sushi-1200.jpg")
+		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", 1)
+		instance.set_meta("points", 2)
 	elif image == 3:
-		instance.get_node("Image").texture = load("res://images/tobiko-roll-1200.jpg")
+		instance.texture = load("res://images/tobiko-roll-1200.jpg")
+		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", 1)
+		instance.set_meta("points", 3)
 	
 	add_child(instance)
 	instance.position = children[count].position
+	
+	
