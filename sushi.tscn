@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://doovsypp0ii44"]
+
+[ext_resource type="Script" uid="uid://dja8neebpbqni" path="res://sushi.gd" id="1_w0bqi"]
+
+[node name="Sushi" type="Node2D"]
+script = ExtResource("1_w0bqi")
+speed = 100
+metadata/type = 0
+
+[node name="Image" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)

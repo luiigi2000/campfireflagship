@@ -20,6 +20,17 @@ func _on_spawn_timer_timeout() -> void:
 func spawn():
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
-	var instance = spawners.get_meta("Spawnables")[0].instantiate()
+	var image := randi_range(1,3)
+	var instance = preload("res://sushi.tscn").instantiate()
+	if image == 1:
+		instance.get_node("Image").texture = load("res://images/download (1).jpg")
+		instance.set_meta("type", 1)
+	elif image == 2:
+		instance.get_node("Image").texture = load("res://images/nigiri-sushi-1200.jpg")
+		instance.set_meta("type", 1)
+	elif image == 3:
+		instance.get_node("Image").texture = load("res://images/tobiko-roll-1200.jpg")
+		instance.set_meta("type", 1)
+	
 	add_child(instance)
 	instance.position = children[count].position
