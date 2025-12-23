@@ -1,6 +1,6 @@
 extends Node2D
 
-var speed = global.Speed
+var speed := 50.0
 var dragging = false
 var offset = Vector2(0,0)
 var limit = 100000
@@ -9,15 +9,24 @@ var limit = 100000
 func _ready() -> void:
 	timer.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	position.x += speed * delta
+	for conveyer in global.conveyers.values():
+		if conveyer["objects"].has(self):
+			speed = conveyer["speed"]
+			break
 	if position.x >= get_viewport_rect().size.x:
+		for conveyer in global.conveyers.values():
+			if conveyer["objects"].has(self):
+				conveyer["objects"].erase(self)
+				break
 		queue_free()
 	if dragging:
 		position = get_global_mouse_position() - offset
 		position = Vector2(clamp(position.x,0,limit),clamp(position.y,0,get_viewport_rect().size.y))
+		
+
 
 func _on_button_button_down() -> void:
 	dragging = true
@@ -27,28 +36,28 @@ func _on_button_button_down() -> void:
 
 func _on_button_button_up() -> void:
 	if position.y < 250:
-		if global.conveyers.conveyer2.has(self):
-			global.conveyers.conveyer2.erase(self)
-		if global.conveyers.conveyer3.has(self):
-			global.conveyers.conveyer3.erase(self)
-		if global.conveyers.conveyer1.has(self) == false:
-			global.conveyers.conveyer1.append(self)
+		if global.conveyers["conveyer2"]["objects"].has(self):
+			global.conveyers["conveyer2"]["objects"].erase(self)
+		if global.conveyers["conveyer3"]["objects"].has(self):
+			global.conveyers["conveyer3"]["objects"].erase(self)
+		if global.conveyers["conveyer1"]["objects"].has(self) == false:
+			global.conveyers["conveyer1"]["objects"].append(self)
 		position.y = 125
 	elif position.y < 450:
-		if global.conveyers.conveyer1.has(self):
-			global.conveyers.conveyer1.erase(self)
-		if global.conveyers.conveyer3.has(self):
-			global.conveyers.conveyer3.erase(self)
-		if global.conveyers.conveyer2.has(self) == false:
-			global.conveyers.conveyer2.append(self)
+		if global.conveyers["conveyer1"]["objects"].has(self):
+			global.conveyers["conveyer1"]["objects"].erase(self)
+		if global.conveyers["conveyer3"]["objects"].has(self):
+			global.conveyers["conveyer3"]["objects"].erase(self)
+		if global.conveyers["conveyer2"]["objects"].has(self) == false:
+			global.conveyers["conveyer2"]["objects"].append(self)
 		position.y = 350
 	else:
-		if global.conveyers.conveyer1.has(self):
-			global.conveyers.conveyer1.erase(self)
-		if global.conveyers.conveyer2.has(self):
-			global.conveyers.conveyer2.erase(self)
-		if global.conveyers.conveyer3.has(self) == false:
-			global.conveyers.conveyer3.append(self)
+		if global.conveyers["conveyer1"]["objects"].has(self):
+			global.conveyers["conveyer1"]["objects"].erase(self)
+		if global.conveyers["conveyer2"]["objects"].has(self):
+			global.conveyers["conveyer2"]["objects"].erase(self)
+		if global.conveyers["conveyer3"]["objects"].has(self) == false:
+			global.conveyers["conveyer3"]["objects"].append(self)
 		position.y = 575
 	dragging = false
 	limit = 1000000

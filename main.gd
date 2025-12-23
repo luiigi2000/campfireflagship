@@ -19,9 +19,12 @@ func _process(delta: float) -> void:
 		else:
 			$menu.visible = false
 	
-	$Background/Label.text = str(len(global.conveyers.conveyer1))
-	$Background/Label2.text = str(len(global.conveyers.conveyer2))
-	$Background/Label3.text = str(len(global.conveyers.conveyer3))
+	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
+	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
+	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
+	for i in global.conveyers.keys():
+		global.conveyers[i]["speed"] = 50 + (10*len(global.conveyers[i]["objects"]))
+	
 
 func _on_spawn_timer_timeout() -> void:
 	spawn()
@@ -47,13 +50,15 @@ func spawn():
 		instance.set_meta("type", 1)
 		instance.set_meta("points", 3)
 	if count == 0:
-		global.conveyers.conveyer1.append(instance)
+		global.conveyers["conveyer1"]["objects"].append(instance)
+		instance.set_meta("conveyer",1)
 	elif count == 1:
-		global.conveyers.conveyer2.append(instance)
+		global.conveyers["conveyer2"]["objects"].append(instance)
+		instance.set_meta("conveyer",2)
 	else:
-		global.conveyers.conveyer3.append(instance)
+		global.conveyers["conveyer3"]["objects"].append(instance)
+		instance.set_meta("conveyer",3)
 	add_child(instance)
 	instance.position = children[count].position
-	instance.set_meta("conveyer",3)
 	
 	
