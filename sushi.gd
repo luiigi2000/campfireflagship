@@ -27,10 +27,28 @@ func _on_button_button_down() -> void:
 
 func _on_button_button_up() -> void:
 	if position.y < 250:
+		if global.conveyers.conveyer2.has(self):
+			global.conveyers.conveyer2.erase(self)
+		if global.conveyers.conveyer3.has(self):
+			global.conveyers.conveyer3.erase(self)
+		if global.conveyers.conveyer1.has(self) == false:
+			global.conveyers.conveyer1.append(self)
 		position.y = 125
 	elif position.y < 450:
+		if global.conveyers.conveyer1.has(self):
+			global.conveyers.conveyer1.erase(self)
+		if global.conveyers.conveyer3.has(self):
+			global.conveyers.conveyer3.erase(self)
+		if global.conveyers.conveyer2.has(self) == false:
+			global.conveyers.conveyer2.append(self)
 		position.y = 350
 	else:
+		if global.conveyers.conveyer1.has(self):
+			global.conveyers.conveyer1.erase(self)
+		if global.conveyers.conveyer2.has(self):
+			global.conveyers.conveyer2.erase(self)
+		if global.conveyers.conveyer3.has(self) == false:
+			global.conveyers.conveyer3.append(self)
 		position.y = 575
 	dragging = false
 	limit = 1000000

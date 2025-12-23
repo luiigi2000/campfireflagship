@@ -39,6 +39,30 @@ position = Vector2(577, 559)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
 
+[node name="Label" type="Label" parent="Background"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1111.0
+offset_top = 65.0
+offset_right = 1151.0
+offset_bottom = 88.0
+text = "100"
+
+[node name="Label2" type="Label" parent="Background"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1109.0
+offset_top = 279.0
+offset_right = 1149.0
+offset_bottom = 302.0
+text = "100"
+
+[node name="Label3" type="Label" parent="Background"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 1106.0
+offset_top = 497.0
+offset_right = 1146.0
+offset_bottom = 520.0
+text = "100"
+
 [node name="Label" type="Label" parent="."]
 offset_left = 989.0
 offset_top = 1.0

@@ -19,7 +19,9 @@ func _process(delta: float) -> void:
 		else:
 			$menu.visible = false
 	
-
+	$Background/Label.text = str(len(global.conveyers.conveyer1))
+	$Background/Label2.text = str(len(global.conveyers.conveyer2))
+	$Background/Label3.text = str(len(global.conveyers.conveyer3))
 
 func _on_spawn_timer_timeout() -> void:
 	spawn()
@@ -44,8 +46,14 @@ func spawn():
 		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", 1)
 		instance.set_meta("points", 3)
-	
+	if count == 0:
+		global.conveyers.conveyer1.append(instance)
+	elif count == 1:
+		global.conveyers.conveyer2.append(instance)
+	else:
+		global.conveyers.conveyer3.append(instance)
 	add_child(instance)
 	instance.position = children[count].position
+	instance.set_meta("conveyer",3)
 	
 	
