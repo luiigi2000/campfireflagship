@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://el16ou7226p7"
-path="res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"
+uid="uid://bofl1xjtuif8f"
+path="res://.godot/imported/gambling.png-ac3c18c25cb42c90a7bdf752553f800f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/menu.png"
-dest_files=["res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"]
+source_file="res://images/gambling.png"
+dest_files=["res://.godot/imported/gambling.png-ac3c18c25cb42c90a7bdf752553f800f.ctex"]
 
 [params]
 

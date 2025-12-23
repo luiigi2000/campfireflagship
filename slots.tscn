@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://b11cb0nlajjyc"]
+
+[ext_resource type="Texture2D" uid="uid://bofl1xjtuif8f" path="res://images/gambling.png" id="1_j4mng"]
+[ext_resource type="Script" uid="uid://bwm80h38fp2aw" path="res://slots.gd" id="1_wychi"]
+
+[node name="Slots" type="Node2D"]
+script = ExtResource("1_wychi")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(576, 325)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_j4mng")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = 940.0
+offset_top = 272.0
+offset_right = 948.0
+offset_bottom = 280.0
+scale = Vector2(17.98423, 13.802739)
+action_mode = 0
+
+[node name="Slot_Images" type="Node2D" parent="."]
+
+[node name="Slot1" type="Sprite2D" parent="Slot_Images"]
+position = Vector2(362, 325)
+scale = Vector2(0.05, 0.05)
+
+[node name="Button" type="Button" parent="Slot_Images/Slot1"]
+offset_left = -1879.9999
+offset_top = -1960.0
+offset_right = -1871.9999
+offset_bottom = -1952.0
+scale = Vector2(494.04993, 509.27457)
+action_mode = 0
+
+[node name="Slot2" type="Sprite2D" parent="Slot_Images"]
+position = Vector2(576, 325)
+scale = Vector2(0.05, 0.05)
+
+[node name="Button" type="Button" parent="Slot_Images/Slot2"]
+offset_left = -2000.001
+offset_top = -1960.0
+offset_right = -1992.001
+offset_bottom = -1952.0
+scale = Vector2(494.04993, 509.27457)
+action_mode = 0
+
+[node name="Slot3" type="Sprite2D" parent="Slot_Images"]
+position = Vector2(784, 325)
+scale = Vector2(0.05, 0.05)
+
+[node name="Button" type="Button" parent="Slot_Images/Slot3"]
+offset_left = -1919.999
+offset_top = -1980.0
+offset_right = -1911.999
+offset_bottom = -1972.0
+scale = Vector2(494.04993, 509.27457)
+action_mode = 0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Slot_Images/Slot1/Button" to="." method="_on_button1_pressed"]
+[connection signal="pressed" from="Slot_Images/Slot2/Button" to="." method="_on_button2_pressed"]
+[connection signal="pressed" from="Slot_Images/Slot3/Button" to="." method="_on_button3_pressed"]

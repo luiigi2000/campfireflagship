@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://el16ou7226p7"
-path="res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"
+uid="uid://c82bfv3wo2prq"
+path="res://.godot/imported/tyler.jpg-99d118f07cd0c9cbcb992fb2678870f7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/menu.png"
-dest_files=["res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"]
+source_file="res://images/tyler.jpg"
+dest_files=["res://.godot/imported/tyler.jpg-99d118f07cd0c9cbcb992fb2678870f7.ctex"]
 
 [params]
 

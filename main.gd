@@ -1,5 +1,6 @@
 extends Node2D
 
+#I attempted to make the code more efficient for about an hour to an hour and a half by using instances for the conveyers but it DID NOT WORK so dont blame me for this dooky ass code
 @onready var timer := $SpawnTimer
 @onready var spawners := $Spawners
 
@@ -10,6 +11,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if global.Points >= 0:
+		global.Points = 0
+		for conveyer in global.conveyers.values():
+			for object in conveyer["objects"]:
+				object.queue_free()
+			conveyer["objects"] = []
+		get_tree().change_scene_to_file("res://slots.tscn")
+			
 	timer.wait_time = global.SpawnTime
 	$Label.text = str(global.Points) + " calories"
 	
@@ -22,11 +31,12 @@ func _process(delta: float) -> void:
 	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
-	
+
 
 func _on_spawn_timer_timeout() -> void:
 	spawn()
 	timer.start()
+
 
 func spawn():
 	var children = spawners.get_children()
@@ -67,5 +77,4 @@ func spawn():
 		instance.set_meta("conveyer",3)
 	add_child(instance)
 	instance.position = children[count].position
-	
 	

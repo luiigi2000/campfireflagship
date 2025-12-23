@@ -6,8 +6,11 @@ var offset = Vector2(0,0)
 var limit = 100000
 @onready var timer = $PointsTimer
 @export var base_speed := 50.0
+@onready var points_timer = $PointsTimer2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if get_meta("type") == "food":
+		$Points.text = "+" + str(get_meta("points")) 
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -48,6 +51,7 @@ func _process(delta: float) -> void:
 	if dragging:
 		position = get_global_mouse_position() - offset
 		position = Vector2(clamp(position.x,0,limit),clamp(position.y,0,get_viewport_rect().size.y))
+	
 		
 		
 func _on_button_button_down() -> void:
@@ -87,9 +91,12 @@ func _on_button_button_up() -> void:
 	dragging = false
 	limit = 1000000
 
-
 func _on_points_timer_timeout() -> void:
 	if dragging == false:
 		global.Points += get_meta("points")
+		$Points.visible = true
+		points_timer.start()
 	timer.start()
-	
+
+func _on_points_timer_2_timeout() -> void:
+	$Points.visible = false

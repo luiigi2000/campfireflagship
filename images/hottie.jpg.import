@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://el16ou7226p7"
-path="res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"
+uid="uid://dv73fnes7455r"
+path="res://.godot/imported/hottie.jpg-6534e67789b5c04d1933680a0549b587.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/menu.png"
-dest_files=["res://.godot/imported/menu.png-09788ebfe49b6ddbddfddd3ff6e0248b.ctex"]
+source_file="res://images/hottie.jpg"
+dest_files=["res://.godot/imported/hottie.jpg-6534e67789b5c04d1933680a0549b587.ctex"]
 
 [params]
 

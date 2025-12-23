@@ -8,9 +8,9 @@ script = ExtResource("1_w0bqi")
 metadata/points = 0
 metadata/conveyer = 0
 metadata/type = ""
+metadata/speed = 50.0
 
 [node name="Button" type="Button" parent="."]
-self_modulate = Color(1, 1, 1, 0)
 offset_left = -415.0
 offset_top = -364.99997
 offset_right = -388.1209
@@ -20,6 +20,21 @@ scale = Vector2(29.576895, 37.07801)
 [node name="PointsTimer" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="Points" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -390.0
+offset_top = -1135.0
+offset_right = 349.99994
+offset_bottom = -370.00006
+theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/normal_font_size = 576
+fit_content = true
+scroll_active = false
+
+[node name="PointsTimer2" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="timeout" from="PointsTimer" to="." method="_on_points_timer_timeout"]
+[connection signal="timeout" from="PointsTimer2" to="." method="_on_points_timer_2_timeout"]
