@@ -22,8 +22,6 @@ func _process(delta: float) -> void:
 	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
-	for i in global.conveyers.keys():
-		global.conveyers[i]["speed"] = 50 + (10*len(global.conveyers[i]["objects"]))
 	
 
 func _on_spawn_timer_timeout() -> void:
@@ -33,22 +31,27 @@ func _on_spawn_timer_timeout() -> void:
 func spawn():
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
-	var image := randi_range(1,3)
+	var image := randi_range(1,4)
 	var instance = preload("res://sushi.tscn").instantiate()
 	if image == 1:
 		instance.texture = load("res://images/download (1).jpg")
-		instance.set_meta("type", 1)
+		instance.set_meta("type", "food")
 		instance.set_meta("points", 1)
 	elif image == 2:
 		instance.texture = load("res://images/nigiri-sushi-1200.jpg")
 		instance.scale = Vector2(.05,.05)
-		instance.set_meta("type", 1)
+		instance.set_meta("type", "food")
 		instance.set_meta("points", 2)
 	elif image == 3:
 		instance.texture = load("res://images/tobiko-roll-1200.jpg")
 		instance.scale = Vector2(.05,.05)
-		instance.set_meta("type", 1)
+		instance.set_meta("type", "food")
 		instance.set_meta("points", 3)
+	elif image == 4:
+		instance.texture = load("res://images/images (1).jpg")
+		instance.set_meta("points",0)
+		instance.set_meta("type", "ice")
+		
 	if count == 0:
 		global.conveyers["conveyer1"]["objects"].append(instance)
 		instance.set_meta("conveyer",1)

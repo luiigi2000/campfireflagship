@@ -2,6 +2,7 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
+var ice_debounce = true
 
 var conveyers = {
 	"conveyer1":{

@@ -5,11 +5,12 @@
 [node name="Image" type="Sprite2D"]
 scale = Vector2(0.2, 0.2)
 script = ExtResource("1_w0bqi")
-metadata/type = 0
 metadata/points = 0
 metadata/conveyer = 0
+metadata/type = ""
 
 [node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -415.0
 offset_top = -364.99997
 offset_right = -388.1209

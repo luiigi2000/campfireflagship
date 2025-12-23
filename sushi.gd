@@ -11,20 +11,33 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position.x += speed * delta
 	for conveyer in global.conveyers.values():
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
 			break
+	position.x += speed * delta
 	if position.x >= get_viewport_rect().size.x:
+		if get_meta("type") == "ice":
+			global.ice_debounce = false #add a timer to make it true again
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].has(self):
+					conveyer["speed"] = 0
+					break
+			visible = false
+			await get_tree().create_timer(2.0).timeout
+			global.ice_debounce = true
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
 				break
+		if global.ice_debounce:
+			for i in global.conveyers.keys():
+				global.conveyers[i]["speed"] = speed + (10*len(global.conveyers[i]["objects"]))	
 		queue_free()
 	if dragging:
 		position = get_global_mouse_position() - offset
 		position = Vector2(clamp(position.x,0,limit),clamp(position.y,0,get_viewport_rect().size.y))
+		
 		
 
 
@@ -66,3 +79,4 @@ func _on_button_button_up() -> void:
 func _on_points_timer_timeout() -> void:
 	global.Points += get_meta("points")
 	timer.start()
+	
