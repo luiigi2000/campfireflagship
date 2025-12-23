@@ -24,17 +24,17 @@ wait_time = 2.0
 
 [node name="Background" type="Node2D" parent="."]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Background"]
+[node name="Conveyer1" type="MeshInstance2D" parent="Background"]
 position = Vector2(576, 124)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="Background"]
+[node name="Conveyer2" type="MeshInstance2D" parent="Background"]
 position = Vector2(574, 339)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
 
-[node name="MeshInstance2D3" type="MeshInstance2D" parent="Background"]
+[node name="Conveyer3" type="MeshInstance2D" parent="Background"]
 position = Vector2(577, 559)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")

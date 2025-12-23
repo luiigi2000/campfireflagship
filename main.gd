@@ -31,7 +31,7 @@ func _on_spawn_timer_timeout() -> void:
 func spawn():
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
-	var image := randi_range(1,4)
+	var image := randi_range(1,5)
 	var instance = preload("res://sushi.tscn").instantiate()
 	if image == 1:
 		instance.texture = load("res://images/download (1).jpg")
@@ -51,6 +51,10 @@ func spawn():
 		instance.texture = load("res://images/images (1).jpg")
 		instance.set_meta("points",0)
 		instance.set_meta("type", "ice")
+	elif image == 5:
+		instance.texture = load("res://images/bomb.webp")
+		instance.set_meta("points",0)
+		instance.set_meta("type", "bomb")
 		
 	if count == 0:
 		global.conveyers["conveyer1"]["objects"].append(instance)
