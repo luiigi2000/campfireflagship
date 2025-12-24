@@ -6,6 +6,7 @@ var offset = Vector2(0,0)
 var limit = 100000
 @onready var timer = $PointsTimer
 var powerup2added = false
+@export var powerup2_chance = 50
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_meta("type") == "food":
@@ -100,10 +101,10 @@ func _on_points_timer_timeout() -> void:
 				global.Points += food["points"]
 				break
 		if get_meta("type") == "food":
-			var count = randi_range(1,50)
+			var count = randi_range(1,powerup2_chance)
 			if count == 2:
-				$Powerup2.text = "+10"
-				global.Points+=10
+				$Powerup2.text = "+" + str(global.powerup2_amnt-10)
+				global.Points+=(global.powerup2_amnt-10)
 				$Powerup2.visible = true
 		$Points.visible = true
 		await get_tree().create_timer(1.0).timeout

@@ -10,7 +10,7 @@ var powerups = {
 	},
 	"power2": {
 		"img": load("res://images/tyler.jpg"),
-		"text": "very low chance for a food to occationally give 10 points"
+		"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
 	},
 	"power3": {
 		"img": load("res://images/hottie.jpg"),
@@ -69,6 +69,7 @@ func choose_powerup(chosen):
 				food["points"] += 1
 	elif chosen == "power2":
 		global.powerup2_debounce = true
+		global.powerup2_amnt += 10
 	elif chosen == "power4":
 		for food in global.food_data.values():
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food

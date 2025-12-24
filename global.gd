@@ -3,10 +3,12 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
-var Goal := 100
+var Goal := -100
 var ice_debounce = true
 var base_speed := 50.0
 var powerup2_debounce = false
+var powerup2_amnt = 10
+
 
 var conveyers = {
 	"conveyer1":{
