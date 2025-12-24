@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if global.Points >= 0:
+	if global.Points >= global.Goal:
 		global.Points = 0
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
@@ -44,26 +44,26 @@ func spawn():
 	var image := randi_range(1,5)
 	var instance = preload("res://sushi.tscn").instantiate()
 	if image == 1:
-		instance.texture = load("res://images/download (1).jpg")
+		instance.texture = global.food_data["californiaroll"]["image"]
 		instance.set_meta("type", "food")
-		instance.set_meta("points", 1)
+		instance.set_meta("name","californiaroll")
 	elif image == 2:
-		instance.texture = load("res://images/nigiri-sushi-1200.jpg")
+		instance.texture = global.food_data["nigiri"]["image"]
 		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", "food")
-		instance.set_meta("points", 2)
+		instance.set_meta("name","nigiri")
 	elif image == 3:
-		instance.texture = load("res://images/tobiko-roll-1200.jpg")
+		instance.texture = global.food_data["tobiko"]["image"]
 		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", "food")
-		instance.set_meta("points", 3)
+		instance.set_meta("name","tobiko")
 	elif image == 4:
 		instance.texture = load("res://images/images (1).jpg")
-		instance.set_meta("points",0)
+		instance.set_meta("name","ice")
 		instance.set_meta("type", "ice")
 	elif image == 5:
 		instance.texture = load("res://images/bomb.webp")
-		instance.set_meta("points",0)
+		instance.set_meta("name","bomb")
 		instance.set_meta("type", "bomb")
 		
 	if count == 0:

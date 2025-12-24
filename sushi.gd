@@ -5,23 +5,25 @@ var dragging = false
 var offset = Vector2(0,0)
 var limit = 100000
 @onready var timer = $PointsTimer
-@export var base_speed := 50.0
 @onready var points_timer = $PointsTimer2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if get_meta("type") == "food":
-		$Points.text = "+" + str(get_meta("points")) 
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if get_meta("type") == "food":
+		for food in global.food_data.values():
+			if food["name"] == get_meta("name"):
+				$Points.text = "+" + str(food["points"])
+				break
 	for conveyer in global.conveyers.values():
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
 			break
 	if global.ice_debounce:
 		for i in global.conveyers.keys():
-			global.conveyers[i]["speed"] = base_speed + (10 * len(global.conveyers[i]["objects"]))
+			global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
 	position.x += speed * delta
 	if position.x >= get_viewport_rect().size.x:
 		if get_meta("type") == "ice":
@@ -35,7 +37,6 @@ func _process(delta: float) -> void:
 			global.ice_debounce = true
 		if get_meta("type") == "bomb":
 			queue_free()
-			var count = 0
 			for conveyer in global.conveyers.values():
 				if conveyer["objects"].has(self):
 					for i in range(2):
@@ -93,7 +94,10 @@ func _on_button_button_up() -> void:
 
 func _on_points_timer_timeout() -> void:
 	if dragging == false:
-		global.Points += get_meta("points")
+		for food in global.food_data.values():
+			if food["name"] == get_meta("name"):
+				global.Points += food["points"]
+				break
 		$Points.visible = true
 		points_timer.start()
 	timer.start()

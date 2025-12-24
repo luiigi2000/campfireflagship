@@ -3,8 +3,9 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
-var Goal := 100
+var Goal := 2
 var ice_debounce = true
+var base_speed := 50.0
 
 var conveyers = {
 	"conveyer1":{
@@ -18,5 +19,38 @@ var conveyers = {
 	"conveyer3":{
 		"objects":[],
 		"speed": 50.0
+	}
+}
+#speed is still given to the conveyer, could change in the future
+var food_data = {
+	"nigiri":{
+		"points": 2,
+		"speed": 50,
+		"image": load("res://images/nigiri-sushi-1200.jpg"),
+		"name":"nigiri"
+	},
+	"tobiko":{
+		"points": 3,
+		"speed": 50,
+		"image": load("res://images/tobiko-roll-1200.jpg"),
+		"name":"tobiko"
+	},
+	"californiaroll":{
+		"points": 1,
+		"speed": 50,
+		"image": load("res://images/download (1).jpg"),
+		"name":"californiaroll"
+	},
+	"ice":{
+		"points": 0,
+		"speed": 50,
+		"image": load("res://images/images (1).jpg"),
+		"name": "ice"
+	},
+	"bomb":{
+		"points": 0,
+		"speed": 50,
+		"image": load("res://images/bomb.webp"),
+		"name":"bomb"
 	}
 }

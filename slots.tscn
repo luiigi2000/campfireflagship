@@ -34,6 +34,14 @@ offset_bottom = -1952.0
 scale = Vector2(494.04993, 509.27457)
 action_mode = 0
 
+[node name="Label" type="Label" parent="Slot_Images/Slot1"]
+offset_left = -1579.9999
+offset_top = 1899.9999
+offset_right = 1695.0001
+offset_bottom = 2298.0
+theme_override_font_sizes/font_size = 291
+autowrap_mode = 2
+
 [node name="Slot2" type="Sprite2D" parent="Slot_Images"]
 position = Vector2(576, 325)
 scale = Vector2(0.05, 0.05)
@@ -46,6 +54,14 @@ offset_bottom = -1952.0
 scale = Vector2(494.04993, 509.27457)
 action_mode = 0
 
+[node name="Label" type="Label" parent="Slot_Images/Slot2"]
+offset_left = -1600.0005
+offset_top = 1960.0001
+offset_right = 1674.9995
+offset_bottom = 2358.0
+theme_override_font_sizes/font_size = 291
+autowrap_mode = 2
+
 [node name="Slot3" type="Sprite2D" parent="Slot_Images"]
 position = Vector2(784, 325)
 scale = Vector2(0.05, 0.05)
@@ -57,6 +73,14 @@ offset_right = -1911.999
 offset_bottom = -1972.0
 scale = Vector2(494.04993, 509.27457)
 action_mode = 0
+
+[node name="Label" type="Label" parent="Slot_Images/Slot3"]
+offset_left = -1499.9998
+offset_top = 1980.0001
+offset_right = 1775.0002
+offset_bottom = 2378.0
+theme_override_font_sizes/font_size = 291
+autowrap_mode = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Slot_Images/Slot1/Button" to="." method="_on_button1_pressed"]

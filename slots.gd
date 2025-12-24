@@ -3,7 +3,25 @@ extends Node2D
 var debounce = true
 var end_debounce = false
 @onready var slot_images = $Slot_Images
-var images = [load("res://images/steven.jpg"),load("res://images/tyler.jpg"),load("res://images/hottie.jpg"),load("res://images/josh.jpg")]
+var powerups = {
+	"power1": {
+		"img": load("res://images/steven.jpg"),
+		"text": "conveyer gains + 10 speed for +1 points per food"
+	},
+	"power2": {
+		"img": load("res://images/tyler.jpg"),
+		"text": "higher chance for buffs"
+	},
+	"power3": {
+		"img": load("res://images/hottie.jpg"),
+		"text": "higher chance for debuffs with faster conveyer speed"
+	},
+	"power4": {
+		"img": load("res://images/josh.jpg"),
+		"text": "Slower motabalism: 10% for calorie gain"
+	}
+}
+
 var choices = []
 
 # Called when the node enters the scene tree for the first time.
@@ -22,29 +40,36 @@ func _on_button_pressed() -> void:
 		for slot in slot_images.get_children():
 			for i in range(10):
 				await get_tree().create_timer(.1).timeout
-				slot.texture = images[randi_range(0,len(images)-1)]
+				var img_keys = powerups.keys()
+				var key = img_keys.pick_random()
+				slot.texture = powerups[key]["img"]
+				slot.get_node("Label").text = powerups[key]["text"]
+			
 				if i == 9:
-					choices.append(slot.texture)
+					choices.append(key)
 		end_debounce = true
 		
 func _on_button1_pressed() -> void:
 	if end_debounce:
-		choose_image(choices[0])
+		choose_powerup(choices[0])
 
 func _on_button2_pressed() -> void:
 	if end_debounce:
-		choose_image(choices[1])
+		choose_powerup(choices[1])
 
 func _on_button3_pressed() -> void:
 	if end_debounce:
-		choose_image(choices[2])
+		choose_powerup(choices[2])
 	
-func choose_image(chosen):
-	if chosen == images[0]: 
-		pass
-	elif chosen == images[1]:
-		pass
-	elif chosen == images[2]:
-		pass
-	elif chosen == images[3]:
-		pass
+func choose_powerup(chosen):
+	if chosen == "power1":
+		global.base_speed += 10
+		for food in global.food_data.values():
+			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
+				print(food["name"])
+				food["points"] += 1
+		for food in global.food_data.values():
+			print(food["points"])
+			
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://main.tscn")
