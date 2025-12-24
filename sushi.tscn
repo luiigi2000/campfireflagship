@@ -12,6 +12,7 @@ metadata/speed = 50.0
 metadata/name = ""
 
 [node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -415.0
 offset_top = -364.99997
 offset_right = -388.1209

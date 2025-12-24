@@ -26,6 +26,7 @@ var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$Button.text = str(original_count)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
@@ -34,7 +35,9 @@ func _process(delta: float) -> void:
 	pass
 
 
+
 func _on_button_pressed() -> void:
+	$Button.text = str(original_count-1)
 	spin()
 		
 func _on_button1_pressed() -> void:
@@ -72,10 +75,28 @@ func choose_powerup(chosen):
 		spin()
 	else:
 		await get_tree().create_timer(1).timeout
-		global.Goal += 100
+		global.Goal += 5
 		get_tree().change_scene_to_file("res://main.tscn")
 	
 func spin():
+	powerups = { #move to process if tylers 10 doesnt update within the same scene (multiple spins)
+		"power1": {
+			"img": load("res://images/steven.jpg"),
+			"text": "conveyer gains + 10 speed for +1 points per food"
+		},
+		"power2": {
+			"img": load("res://images/tyler.jpg"),
+			"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
+		},
+		"power3": {
+			"img": load("res://images/hottie.jpg"),
+			"text": "+1 spin next round"
+		},
+		"power4": {
+			"img": load("res://images/josh.jpg"),
+			"text": "Slower metabolism: 3% gain for calories"
+		}
+	}
 	if debounce:
 		debounce = false
 		for slot in slot_images.get_children():

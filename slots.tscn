@@ -27,6 +27,7 @@ position = Vector2(362, 325)
 scale = Vector2(0.05, 0.05)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot1"]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -1879.9999
 offset_top = -1960.0
 offset_right = -1871.9999
@@ -47,6 +48,7 @@ position = Vector2(576, 325)
 scale = Vector2(0.05, 0.05)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot2"]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -2000.001
 offset_top = -1960.0
 offset_right = -1992.001
@@ -67,6 +69,7 @@ position = Vector2(784, 325)
 scale = Vector2(0.05, 0.05)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot3"]
+self_modulate = Color(1, 1, 1, 0)
 offset_left = -1919.999
 offset_top = -1980.0
 offset_right = -1911.999
