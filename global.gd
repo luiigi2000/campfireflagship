@@ -3,12 +3,13 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
-var Goal := 5
+var Goal := 3
 var ice_debounce = true
 var base_speed := 50.0
 var powerup2_debounce = false
 var powerup2_amnt = 10
 var spin_amnt = 1
+var perfect_round = true
 
 
 var conveyers = {

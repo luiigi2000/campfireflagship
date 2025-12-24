@@ -11,13 +11,18 @@ position = Vector2(576, 325)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_j4mng")
 
-[node name="Button" type="Button" parent="."]
+[node name="ButtonScale" type="Node2D" parent="."]
+position = Vector2(747.99994, 194.99998)
+scale = Vector2(0.2, 0.2)
+
+[node name="Button" type="Button" parent="ButtonScale"]
 self_modulate = Color(1, 0, 0, 1)
 offset_left = 940.0
 offset_top = 272.0
-offset_right = 948.0
-offset_bottom = 280.0
+offset_right = 958.0
+offset_bottom = 303.0
 scale = Vector2(17.98423, 13.802739)
+theme_override_font_sizes/font_size = 36
 action_mode = 0
 
 [node name="Slot_Images" type="Node2D" parent="."]
@@ -85,7 +90,7 @@ offset_bottom = 2378.0
 theme_override_font_sizes/font_size = 291
 autowrap_mode = 2
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ButtonScale/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Slot_Images/Slot1/Button" to="." method="_on_button1_pressed"]
 [connection signal="pressed" from="Slot_Images/Slot2/Button" to="." method="_on_button2_pressed"]
 [connection signal="pressed" from="Slot_Images/Slot3/Button" to="." method="_on_button3_pressed"]

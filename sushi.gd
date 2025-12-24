@@ -27,6 +27,8 @@ func _process(delta: float) -> void:
 			global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
 	position.x += speed * delta
 	if position.x >= get_viewport_rect().size.x:
+		if get_meta("type") == "food":
+			global.perfect_round = false
 		if get_meta("type") == "ice":
 			global.ice_debounce = false #add a timer to make it true again
 			for conveyer in global.conveyers.values():

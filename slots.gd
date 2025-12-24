@@ -26,7 +26,7 @@ var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Button.text = str(original_count)
+	$ButtonScale/Button.text = str(original_count)
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
@@ -34,10 +34,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-
 func _on_button_pressed() -> void:
-	$Button.text = str(original_count-1)
+	$ButtonScale/Button.text = str(original_count-1)
 	spin()
 		
 func _on_button1_pressed() -> void:
@@ -75,7 +73,7 @@ func choose_powerup(chosen):
 		spin()
 	else:
 		await get_tree().create_timer(1).timeout
-		global.Goal += 5
+		global.Goal += 100
 		get_tree().change_scene_to_file("res://main.tscn")
 	
 func spin():
