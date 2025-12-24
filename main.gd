@@ -45,27 +45,27 @@ func _on_spawn_timer_timeout() -> void:
 func spawn():
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
-	var image := randi_range(1,5)
+	var image := randi_range(1,100)
 	var instance = preload("res://sushi.tscn").instantiate()
-	if image == 1:
+	if image <= 20:
 		instance.texture = global.food_data["californiaroll"]["image"]
 		instance.set_meta("type", "food")
 		instance.set_meta("name","californiaroll")
-	elif image == 2:
+	elif image <= 40:
 		instance.texture = global.food_data["nigiri"]["image"]
 		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", "food")
 		instance.set_meta("name","nigiri")
-	elif image == 3:
+	elif image <= 60:
 		instance.texture = global.food_data["tobiko"]["image"]
 		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", "food")
 		instance.set_meta("name","tobiko")
-	elif image == 4:
+	elif image <= 80:
 		instance.texture = load("res://images/images (1).jpg")
 		instance.set_meta("name","ice")
 		instance.set_meta("type", "ice")
-	elif image == 5:
+	elif image <= 100:
 		instance.texture = load("res://images/bomb.webp")
 		instance.set_meta("name","bomb")
 		instance.set_meta("type", "bomb")

@@ -40,10 +40,10 @@ func _process(delta: float) -> void:
 			global.ice_debounce = true
 		if get_meta("type") == "bomb":
 			for conveyer in global.conveyers.values():
-				conveyer["objects"].erase(self)
-			queue_free()
-			for conveyer in global.conveyers.values():
-				if conveyer["objects"].size() > 0:  
+				if conveyer["objects"].size() > 0 and conveyer["objects"].has(self):
+					conveyer["objects"].erase(self)
+					queue_free()
+					print("BOMB")
 					for i in range(2):
 						if conveyer["objects"].is_empty():
 							break
