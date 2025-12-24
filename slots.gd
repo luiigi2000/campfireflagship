@@ -3,6 +3,7 @@ extends Node2D
 var debounce = true
 var end_debounce = false
 @onready var slot_images = $Slot_Images
+var original_count = global.spin_amnt
 var powerups = {
 	"power1": {
 		"img": load("res://images/steven.jpg"),
@@ -14,7 +15,7 @@ var powerups = {
 	},
 	"power3": {
 		"img": load("res://images/hottie.jpg"),
-		"text": "higher chance for debuffs with faster conveyer speed"
+		"text": "+1 spin next round"
 	},
 	"power4": {
 		"img": load("res://images/josh.jpg"),
@@ -34,19 +35,7 @@ func _process(delta: float) -> void:
 
 
 func _on_button_pressed() -> void:
-	if debounce:
-		debounce = false
-		for slot in slot_images.get_children():
-			for i in range(10):
-				await get_tree().create_timer(.1).timeout
-				var img_keys = powerups.keys()
-				var key = img_keys.pick_random()
-				slot.texture = powerups[key]["img"]
-				slot.get_node("Label").text = powerups[key]["text"]
-			
-				if i == 9:
-					choices.append(key)
-		end_debounce = true
+	spin()
 		
 func _on_button1_pressed() -> void:
 	if end_debounce:
@@ -70,12 +59,33 @@ func choose_powerup(chosen):
 	elif chosen == "power2":
 		global.powerup2_debounce = true
 		global.powerup2_amnt += 10
+	elif chosen == "power3":
+		global.spin_amnt+=1
 	elif chosen == "power4":
 		for food in global.food_data.values():
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
 				food["points"] *= 1.3
 				food["points"] = roundi(food["points"])
+	original_count -= 1
+	if original_count > 0:
+		debounce = true
+		spin()
+	else:
+		await get_tree().create_timer(1).timeout
+		global.Goal += 100
+		get_tree().change_scene_to_file("res://main.tscn")
+	
+func spin():
+	if debounce:
+		debounce = false
+		for slot in slot_images.get_children():
+			for i in range(10):
+				await get_tree().create_timer(.1).timeout
+				var img_keys = powerups.keys()
+				var key = img_keys.pick_random()
+				slot.texture = powerups[key]["img"]
+				slot.get_node("Label").text = powerups[key]["text"]
 			
-	await get_tree().create_timer(1).timeout
-	global.Goal += 100
-	get_tree().change_scene_to_file("res://main.tscn")
+				if i == 9:
+					choices.append(key)
+		end_debounce = true
