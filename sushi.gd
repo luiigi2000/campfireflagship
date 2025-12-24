@@ -86,8 +86,8 @@ func _on_points_timer_timeout() -> void:
 			if food["name"] == get_meta("name"):
 				global.Points += food["points"]
 				break
-		if get_meta("type") == "food":
-			var count = randi_range(1,powerup2_chance)
+		if get_meta("type") == "food" and global.powerup2_debounce:
+			var count = randi_range(1,2)#2=powerup2_chance
 			if count == 2:
 				$Powerup2.text = "+" + str(global.powerup2_amnt-10)
 				global.Points+=(global.powerup2_amnt-10)
