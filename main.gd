@@ -6,11 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if global.perfect_round:
-			global.perfect_round = true
-			global.Points = global.Goal/4
-	else:
-		global.Points = 0
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()
 
 
@@ -21,9 +17,10 @@ func _process(delta: float) -> void:
 			for object in conveyer["objects"]:
 				object.queue_free()
 			conveyer["objects"] = []
-		$PerfectRound.visible = true
-		await get_tree().create_timer(1).timeout
-		$PerfectRound.visible = false
+		if global.perfect_round == true:
+			$PerfectRound.visible = true
+			await get_tree().create_timer(1).timeout
+			$PerfectRound.visible = false
 		get_tree().change_scene_to_file("res://slots.tscn")
 			
 	timer.wait_time = global.SpawnTime

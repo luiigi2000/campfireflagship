@@ -3,7 +3,7 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
-var Goal := 3
+var Goal := 100
 var ice_debounce = true
 var base_speed := 50.0
 var powerup2_debounce = false

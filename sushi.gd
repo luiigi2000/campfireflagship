@@ -43,13 +43,14 @@ func _process(delta: float) -> void:
 				conveyer["objects"].erase(self)
 			queue_free()
 			for conveyer in global.conveyers.values():
-				if conveyer["objects"].has(self):
+				if conveyer["objects"].size() > 0:  
 					for i in range(2):
 						if conveyer["objects"].is_empty():
 							break
 						var obj = randi_range(0,len(conveyer["objects"])-1)
 						conveyer["objects"][obj].queue_free()
 						conveyer["objects"].remove_at(obj)
+
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
