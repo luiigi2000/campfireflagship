@@ -7,6 +7,9 @@ var limit = 100000
 @onready var timer = $PointsTimer
 var powerup2added = false
 @export var powerup2_chance = 50
+@onready var click_timer = $ClickTimer
+var timeout_debounce = true
+var time_freeze := 2.5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if get_meta("type") == "food":
@@ -56,11 +59,12 @@ func _process(delta: float) -> void:
 				conveyer["objects"].erase(self)
 				break
 		queue_free()
-	if dragging:
+	if dragging and timeout_debounce:
 		position = get_global_mouse_position() - offset
 		position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
 		
 func _on_button_button_down() -> void:
+	click_timer.start()
 	dragging = true
 	limit = get_global_mouse_position().x +5
 	offset = get_global_mouse_position() - global_position
@@ -68,32 +72,11 @@ func _on_button_button_down() -> void:
 
 func _on_button_button_up() -> void:
 	if position.y < 250:
-		if global.conveyers["conveyer2"]["objects"].has(self):
-			global.conveyers["conveyer2"]["objects"].erase(self)
-		if global.conveyers["conveyer3"]["objects"].has(self):
-			global.conveyers["conveyer3"]["objects"].erase(self)
-		if global.conveyers["conveyer1"]["objects"].has(self) == false:
-			global.conveyers["conveyer1"]["objects"].append(self)
-		set_meta("conveyer",1)
-		position.y = 125
+		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
 	elif position.y < 450:
-		if global.conveyers["conveyer1"]["objects"].has(self):
-			global.conveyers["conveyer1"]["objects"].erase(self)
-		if global.conveyers["conveyer3"]["objects"].has(self):
-			global.conveyers["conveyer3"]["objects"].erase(self)
-		if global.conveyers["conveyer2"]["objects"].has(self) == false:
-			global.conveyers["conveyer2"]["objects"].append(self)
-		set_meta("conveyer",2)
-		position.y = 350
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
 	else:
-		if global.conveyers["conveyer1"]["objects"].has(self):
-			global.conveyers["conveyer1"]["objects"].erase(self)
-		if global.conveyers["conveyer2"]["objects"].has(self):
-			global.conveyers["conveyer2"]["objects"].erase(self)
-		if global.conveyers["conveyer3"]["objects"].has(self) == false:
-			global.conveyers["conveyer3"]["objects"].append(self)
-		set_meta("conveyer",3)
-		position.y = 575
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
 	dragging = false
 	limit = 1000000
 
@@ -114,3 +97,27 @@ func _on_points_timer_timeout() -> void:
 		$Points.visible = false
 		$Powerup2.visible = false
 	timer.start()
+	
+
+func _on_click_timer_timeout() -> void:
+	dragging = false
+	if position.y < 250:
+		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
+	elif position.y < 450:
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
+	else:
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+	limit = 1000000
+	timeout_debounce = false
+	await get_tree().create_timer(time_freeze).timeout
+	timeout_debounce = true
+	
+func move_conveyer(conveyer1,conveyer2,conveyerself,conveyernum,ypos):
+	if conveyer1.has(self):
+		conveyer1.erase(self)
+	if conveyer2.has(self):
+		conveyer2.erase(self)
+	if conveyerself.has(self) == false:
+		conveyerself.append(self)
+	set_meta("conveyer",conveyernum)
+	position.y = ypos	

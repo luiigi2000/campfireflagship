@@ -45,6 +45,10 @@ text = "+10"
 fit_content = true
 scroll_active = false
 
+[node name="ClickTimer" type="Timer" parent="."]
+wait_time = 4.0
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="timeout" from="PointsTimer" to="." method="_on_points_timer_timeout"]
+[connection signal="timeout" from="ClickTimer" to="." method="_on_click_timer_timeout"]

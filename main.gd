@@ -66,6 +66,7 @@ func spawn():
 		instance.set_meta("name","ice")
 		instance.set_meta("type", "ice")
 	elif image <= 100:
+		instance.scale = Vector2(.05,.05)
 		instance.texture = load("res://images/bomb.webp")
 		instance.set_meta("name","bomb")
 		instance.set_meta("type", "bomb")
