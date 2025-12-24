@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		get_tree().change_scene_to_file("res://slots.tscn")
 			
 	timer.wait_time = global.SpawnTime
-	$Label.text = str(global.Points) + " calories"
+	$Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
 	
 	if Input.is_action_just_pressed("accessmenu"):
 		if $menu.visible == false:

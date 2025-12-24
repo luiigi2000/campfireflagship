@@ -5,18 +5,18 @@ var dragging = false
 var offset = Vector2(0,0)
 var limit = 100000
 @onready var timer = $PointsTimer
-@onready var points_timer = $PointsTimer2
+var powerup2added = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	timer.start()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
 	if get_meta("type") == "food":
 		for food in global.food_data.values():
 			if food["name"] == get_meta("name"):
 				$Points.text = "+" + str(food["points"])
 				break
+	timer.start()
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
 	for conveyer in global.conveyers.values():
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
@@ -36,14 +36,17 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(2.0).timeout
 			global.ice_debounce = true
 		if get_meta("type") == "bomb":
+			for conveyer in global.conveyers.values():
+				conveyer["objects"].erase(self)
 			queue_free()
 			for conveyer in global.conveyers.values():
 				if conveyer["objects"].has(self):
 					for i in range(2):
+						if conveyer["objects"].is_empty():
+							break
 						var obj = randi_range(0,len(conveyer["objects"])-1)
-						if obj >= 0:
-							conveyer["objects"][obj].queue_free()
-							conveyer["objects"].remove_at(obj)
+						conveyer["objects"][obj].queue_free()
+						conveyer["objects"].remove_at(obj)
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
@@ -51,9 +54,7 @@ func _process(delta: float) -> void:
 		queue_free()
 	if dragging:
 		position = get_global_mouse_position() - offset
-		position = Vector2(clamp(position.x,0,limit),clamp(position.y,0,get_viewport_rect().size.y))
-	
-		
+		position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
 		
 func _on_button_button_down() -> void:
 	dragging = true
@@ -98,9 +99,14 @@ func _on_points_timer_timeout() -> void:
 			if food["name"] == get_meta("name"):
 				global.Points += food["points"]
 				break
+		if get_meta("type") == "food":
+			var count = randi_range(1,50)
+			if count == 2:
+				$Powerup2.text = "+10"
+				global.Points+=10
+				$Powerup2.visible = true
 		$Points.visible = true
-		points_timer.start()
+		await get_tree().create_timer(1.0).timeout
+		$Points.visible = false
+		$Powerup2.visible = false
 	timer.start()
-
-func _on_points_timer_2_timeout() -> void:
-	$Points.visible = false

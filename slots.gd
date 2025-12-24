@@ -10,7 +10,7 @@ var powerups = {
 	},
 	"power2": {
 		"img": load("res://images/tyler.jpg"),
-		"text": "higher chance for buffs"
+		"text": "very low chance for a food to occationally give 10 points"
 	},
 	"power3": {
 		"img": load("res://images/hottie.jpg"),
@@ -18,15 +18,14 @@ var powerups = {
 	},
 	"power4": {
 		"img": load("res://images/josh.jpg"),
-		"text": "Slower motabalism: 10% for calorie gain"
+		"text": "Slower metabolism: 3% gain for calories"
 	}
 }
-
 var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -68,8 +67,14 @@ func choose_powerup(chosen):
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
 				print(food["name"])
 				food["points"] += 1
+	elif chosen == "power2":
+		global.powerup2_debounce = true
+	elif chosen == "power4":
 		for food in global.food_data.values():
-			print(food["points"])
+			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
+				food["points"] *= 1.3
+				food["points"] = roundi(food["points"])
 			
 	await get_tree().create_timer(1).timeout
+	global.Goal += 100
 	get_tree().change_scene_to_file("res://main.tscn")

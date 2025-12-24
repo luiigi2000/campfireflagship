@@ -32,10 +32,18 @@ theme_override_font_sizes/normal_font_size = 576
 fit_content = true
 scroll_active = false
 
-[node name="PointsTimer2" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Powerup2" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -375.0
+offset_top = 444.99988
+offset_right = 364.99994
+offset_bottom = 1209.9998
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 326
+text = "+10"
+fit_content = true
+scroll_active = false
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_button_up"]
 [connection signal="timeout" from="PointsTimer" to="." method="_on_points_timer_timeout"]
-[connection signal="timeout" from="PointsTimer2" to="." method="_on_points_timer_2_timeout"]
