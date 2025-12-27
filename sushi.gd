@@ -46,7 +46,6 @@ func _process(delta: float) -> void:
 				if conveyer["objects"].size() > 0 and conveyer["objects"].has(self):
 					conveyer["objects"].erase(self)
 					queue_free()
-					print("BOMB")
 					for i in range(2):
 						if conveyer["objects"].is_empty():
 							break
@@ -59,6 +58,7 @@ func _process(delta: float) -> void:
 				conveyer["objects"].erase(self)
 				break
 		queue_free()
+		return
 	if dragging and timeout_debounce:
 		position = get_global_mouse_position() - offset
 		position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
@@ -71,6 +71,9 @@ func _on_button_button_down() -> void:
 
 
 func _on_button_button_up() -> void:
+	if click_timer.is_stopped() == false:
+		click_timer.stop()
+
 	if position.y < 250:
 		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
 	elif position.y < 450:

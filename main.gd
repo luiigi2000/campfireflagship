@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
 				object.queue_free()
-			conveyer["objects"] = []
+			conveyer["objects"].clear()
 		if global.perfect_round == true:
 			$PerfectRound.visible = true
 			await get_tree().create_timer(1).timeout

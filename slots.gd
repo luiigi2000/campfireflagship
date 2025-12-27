@@ -6,19 +6,19 @@ var end_debounce = false
 var original_count = global.spin_amnt
 var powerups = {
 	"power1": {
-		"img": load("res://images/steven.jpg"),
+		"img": load("res://images/wallywest.jpg"),
 		"text": "conveyer gains + 10 speed for +1 points per food"
 	},
 	"power2": {
-		"img": load("res://images/tyler.jpg"),
+		"img": load("res://images/mining.jpg"),
 		"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
 	},
 	"power3": {
-		"img": load("res://images/hottie.jpg"),
+		"img": load("res://images/spinning.jpg"),
 		"text": "+1 spin next round"
 	},
 	"power4": {
-		"img": load("res://images/josh.jpg"),
+		"img": load("res://images/caseoh.jpg"),
 		"text": "Slower metabolism: 3% gain for calories"
 	}
 }
@@ -81,21 +81,21 @@ func choose_powerup(chosen):
 		get_tree().change_scene_to_file("res://main.tscn")
 	
 func spin():
-	powerups = { #move to process if tylers 10 doesnt update within the same scene (multiple spins)
+	var powerups = {
 		"power1": {
-			"img": load("res://images/steven.jpg"),
+			"img": load("res://images/wallywest.jpg"),
 			"text": "conveyer gains + 10 speed for +1 points per food"
 		},
 		"power2": {
-			"img": load("res://images/tyler.jpg"),
+			"img": load("res://images/mining.jpg"),
 			"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
 		},
 		"power3": {
-			"img": load("res://images/hottie.jpg"),
+			"img": load("res://images/spinning.jpg"),
 			"text": "+1 spin next round"
 		},
 		"power4": {
-			"img": load("res://images/josh.jpg"),
+			"img": load("res://images/caseoh.jpg"),
 			"text": "Slower metabolism: 3% gain for calories"
 		}
 	}

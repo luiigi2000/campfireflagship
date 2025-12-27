@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbiju15o1cnq6"
-path="res://.godot/imported/steven.jpg-49799b33b1ffc41cc1810918a5fd67e1.ctex"
+uid="uid://bg7np3k3nf4iu"
+path="res://.godot/imported/caseoh.jpg-c8711abff33c02c18724345c2d11149a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/steven.jpg"
-dest_files=["res://.godot/imported/steven.jpg-49799b33b1ffc41cc1810918a5fd67e1.ctex"]
+source_file="res://images/caseoh.jpg"
+dest_files=["res://.godot/imported/caseoh.jpg-c8711abff33c02c18724345c2d11149a.ctex"]
 
 [params]
 

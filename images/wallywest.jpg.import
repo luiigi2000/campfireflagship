@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c82bfv3wo2prq"
-path="res://.godot/imported/tyler.jpg-99d118f07cd0c9cbcb992fb2678870f7.ctex"
+uid="uid://cvq5o6c1l3ncb"
+path="res://.godot/imported/wallywest.jpg-61d1044a9502b0d886667561b4878b3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/tyler.jpg"
-dest_files=["res://.godot/imported/tyler.jpg-99d118f07cd0c9cbcb992fb2678870f7.ctex"]
+source_file="res://images/wallywest.jpg"
+dest_files=["res://.godot/imported/wallywest.jpg-61d1044a9502b0d886667561b4878b3c.ctex"]
 
 [params]
 

@@ -29,65 +29,71 @@ action_mode = 0
 
 [node name="Slot1" type="Sprite2D" parent="Slot_Images"]
 position = Vector2(362, 325)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.2, 0.25)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot1"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -1879.9999
-offset_top = -1960.0
-offset_right = -1871.9999
-offset_bottom = -1952.0
-scale = Vector2(494.04993, 509.27457)
+offset_left = -419.99994
+offset_top = -343.00006
+offset_right = -411.99994
+offset_bottom = -335.00006
+scale = Vector2(105.720825, 84.46407)
 action_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Slot_Images/Slot1"]
-offset_left = -1579.9999
-offset_top = 1899.9999
-offset_right = 1695.0001
-offset_bottom = 2298.0
-theme_override_font_sizes/font_size = 291
+custom_minimum_size = Vector2(1000, 0)
+offset_left = -505.0
+offset_top = 364.00006
+offset_right = 495.0
+offset_bottom = 489.00006
+theme_override_font_sizes/font_size = 61
 autowrap_mode = 2
 
 [node name="Slot2" type="Sprite2D" parent="Slot_Images"]
 position = Vector2(576, 325)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.2, 0.25)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot2"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -2000.001
-offset_top = -1960.0
-offset_right = -1992.001
-offset_bottom = -1952.0
-scale = Vector2(494.04993, 509.27457)
+offset_left = -424.99994
+offset_top = -348.0
+offset_right = -416.99994
+offset_bottom = -340.0
+scale = Vector2(107.36712, 85.15422)
 action_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Slot_Images/Slot2"]
-offset_left = -1600.0005
-offset_top = 1960.0001
-offset_right = 1674.9995
-offset_bottom = 2358.0
-theme_override_font_sizes/font_size = 291
+custom_minimum_size = Vector2(1000, 0)
+offset_left = -510.0
+offset_top = 367.33347
+offset_right = 490.0
+offset_bottom = 492.33347
+theme_override_font_sizes/font_size = 61
 autowrap_mode = 2
 
 [node name="Slot3" type="Sprite2D" parent="Slot_Images"]
 position = Vector2(784, 325)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.2, 0.25)
 
 [node name="Button" type="Button" parent="Slot_Images/Slot3"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -1919.999
-offset_top = -1980.0
-offset_right = -1911.999
-offset_bottom = -1972.0
-scale = Vector2(494.04993, 509.27457)
+offset_left = -421.9999
+offset_top = -346.99997
+offset_right = -413.9999
+offset_bottom = -338.99997
+scale = Vector2(110.647644, 87.22928)
 action_mode = 0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="Slot_Images/Slot3"]
-offset_left = -1499.9998
-offset_top = 1980.0001
-offset_right = 1775.0002
-offset_bottom = 2378.0
-theme_override_font_sizes/font_size = 291
+custom_minimum_size = Vector2(1000, 0)
+offset_left = -490.0
+offset_top = 367.33347
+offset_right = 510.0
+offset_bottom = 492.33347
+theme_override_font_sizes/font_size = 61
 autowrap_mode = 2
 
 [connection signal="pressed" from="ButtonScale/Button" to="." method="_on_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv73fnes7455r"
-path="res://.godot/imported/hottie.jpg-6534e67789b5c04d1933680a0549b587.ctex"
+uid="uid://cmgtalxjq3at6"
+path="res://.godot/imported/spinning.jpg-4fe71b82a51d47e8739fd7d8ad81e527.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/hottie.jpg"
-dest_files=["res://.godot/imported/hottie.jpg-6534e67789b5c04d1933680a0549b587.ctex"]
+source_file="res://images/spinning.jpg"
+dest_files=["res://.godot/imported/spinning.jpg-4fe71b82a51d47e8739fd7d8ad81e527.ctex"]
 
 [params]
 
