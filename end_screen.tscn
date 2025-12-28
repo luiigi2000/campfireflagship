@@ -1,3 +1,24 @@
-[gd_scene format=3 uid="uid://b81ilmniks18a"]
+[gd_scene load_steps=2 format=3 uid="uid://b81ilmniks18a"]
+
+[ext_resource type="Script" uid="uid://cwsdkvnrg83dk" path="res://end_screen.gd" id="1_my301"]
 
 [node name="end_screen" type="Node2D"]
+script = ExtResource("1_my301")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 407.0
+offset_top = 374.0
+offset_right = 719.0
+offset_bottom = 466.0
+theme_override_font_sizes/font_size = 61
+text = "Play Again"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 83.0
+offset_top = 4.0
+offset_right = 1052.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 136
+text = "You lost haha1"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

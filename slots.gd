@@ -4,28 +4,12 @@ var debounce = true
 var end_debounce = false
 @onready var slot_images = $Slot_Images
 var original_count = global.spin_amnt
-var powerups = {
-	"power1": {
-		"img": load("res://images/wallywest.jpg"),
-		"text": "conveyer gains + 10 speed for +1 points per food"
-	},
-	"power2": {
-		"img": load("res://images/mining.jpg"),
-		"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
-	},
-	"power3": {
-		"img": load("res://images/spinning.jpg"),
-		"text": "+1 spin next round"
-	},
-	"power4": {
-		"img": load("res://images/caseoh.jpg"),
-		"text": "Slower metabolism: 3% gain for calories"
-	}
-}
+var powerups
 var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset_powerups()
 	$ButtonScale/Button.text = str(original_count)
 
 
@@ -81,7 +65,23 @@ func choose_powerup(chosen):
 		get_tree().change_scene_to_file("res://main.tscn")
 	
 func spin():
-	var powerups = {
+	reset_powerups()
+	if debounce:
+		debounce = false
+		for slot in slot_images.get_children():
+			for i in range(10):
+				await get_tree().create_timer(.1).timeout
+				var img_keys = powerups.keys()
+				var key = img_keys.pick_random()
+				slot.texture = powerups[key]["img"]
+				slot.get_node("Label").text = powerups[key]["text"]
+			
+				if i == 9:
+					choices.append(key)
+		end_debounce = true
+		
+func reset_powerups():
+	powerups = {
 		"power1": {
 			"img": load("res://images/wallywest.jpg"),
 			"text": "conveyer gains + 10 speed for +1 points per food"
@@ -99,16 +99,3 @@ func spin():
 			"text": "Slower metabolism: 3% gain for calories"
 		}
 	}
-	if debounce:
-		debounce = false
-		for slot in slot_images.get_children():
-			for i in range(10):
-				await get_tree().create_timer(.1).timeout
-				var img_keys = powerups.keys()
-				var key = img_keys.pick_random()
-				slot.texture = powerups[key]["img"]
-				slot.get_node("Label").text = powerups[key]["text"]
-			
-				if i == 9:
-					choices.append(key)
-		end_debounce = true

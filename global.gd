@@ -2,7 +2,7 @@
 extends Node
 
 var SpawnTime := 10
-var Points := 0
+var Points := 100
 var Goal := 100
 var ice_debounce = true
 var base_speed := 50.0
@@ -10,6 +10,8 @@ var powerup2_debounce = false
 var powerup2_amnt = 10
 var spin_amnt = 1
 var perfect_round = true
+var food_lost := 0
+var lost_limit := 25
 
 
 var conveyers = {
@@ -60,7 +62,6 @@ var food_data = {
 	}
 }
 
-
 func reset():
 	SpawnTime = 10
 	Points = 0
@@ -71,6 +72,8 @@ func reset():
 	powerup2_amnt = 10
 	spin_amnt = 1
 	perfect_round = true
+	food_lost = 0
+	lost_limit = 25
 	
 	conveyers = {
 		"conveyer1":{

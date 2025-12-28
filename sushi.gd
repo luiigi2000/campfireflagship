@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 	if position.x >= get_viewport_rect().size.x:
 		if get_meta("type") == "food":
 			global.perfect_round = false
+			global.food_lost += 1
 		if get_meta("type") == "ice":
 			global.ice_debounce = false #add a timer to make it true again
 			for conveyer in global.conveyers.values():

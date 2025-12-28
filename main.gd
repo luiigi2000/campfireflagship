@@ -3,6 +3,7 @@ extends Node2D
 #I attempted to make the code more efficient for about an hour to an hour and a half by using instances for the conveyers but it DID NOT WORK so dont blame me for this dooky ass code
 @onready var timer := $SpawnTimer
 @onready var spawners := $Spawners
+var round_done := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +13,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if round_done:
+		return
 	if global.Points >= global.Goal:
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
@@ -22,6 +25,7 @@ func _process(delta: float) -> void:
 			await get_tree().create_timer(1).timeout
 			$PerfectRound.visible = false
 		get_tree().change_scene_to_file("res://slots.tscn")
+		round_done = true
 			
 	timer.wait_time = global.SpawnTime
 	$Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
@@ -32,9 +36,14 @@ func _process(delta: float) -> void:
 		else:
 			$menu.visible = false
 	
+	
 	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
+	$FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
+	
+	if global.food_lost >= global.lost_limit:
+		get_tree().change_scene_to_file("res://end_screen.tscn")
 
 
 func _on_spawn_timer_timeout() -> void:

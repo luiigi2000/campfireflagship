@@ -70,6 +70,14 @@ offset_top = 1.0
 offset_right = 1152.0
 offset_bottom = 39.0
 
+[node name="FoodLost" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 4.0
+offset_right = 176.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "0/100"
+
 [node name="menu" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(572, 316)
