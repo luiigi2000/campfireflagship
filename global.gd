@@ -12,6 +12,7 @@ var spin_amnt = 1
 var perfect_round = true
 var food_lost := 0
 var lost_limit := 25
+var powerup5_debounce := false
 
 
 var conveyers = {
@@ -74,6 +75,7 @@ func reset():
 	perfect_round = true
 	food_lost = 0
 	lost_limit = 25
+	powerup5_debounce = false
 	
 	conveyers = {
 		"conveyer1":{

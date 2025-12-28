@@ -50,6 +50,8 @@ func choose_powerup(chosen):
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
 				food["points"] *= 1.3
 				food["points"] = roundi(food["points"])
+	elif chosen == "power5":
+		global.powerup5_debounce = true
 	original_count -= 1
 	if original_count > 0:
 		debounce = true
@@ -81,21 +83,45 @@ func spin():
 		end_debounce = true
 		
 func reset_powerups():
-	powerups = {
-		"power1": {
-			"img": load("res://images/wallywest.jpg"),
-			"text": "conveyer gains + 10 speed for +1 points per food"
-		},
-		"power2": {
-			"img": load("res://images/mining.jpg"),
-			"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
-		},
-		"power3": {
-			"img": load("res://images/spinning.jpg"),
-			"text": "+1 spin next round"
-		},
-		"power4": {
-			"img": load("res://images/caseoh.jpg"),
-			"text": "Slower metabolism: 3% gain for calories"
+	if global.powerup5_debounce:
+		powerups = {
+			"power1": {
+				"img": load("res://images/wallywest.jpg"),
+				"text": "conveyer gains + 10 speed for +1 points per food"
+			},
+			"power2": {
+				"img": load("res://images/mining.jpg"),
+				"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
+			},
+			"power3": {
+				"img": load("res://images/spinning.jpg"),
+				"text": "+1 spin next round"
+			},
+			"power4": {
+				"img": load("res://images/caseoh.jpg"),
+				"text": "Slower metabolism: 3% gain for calories"
+			}
 		}
-	}
+	else:
+		powerups = {
+			"power1": {
+				"img": load("res://images/wallywest.jpg"),
+				"text": "conveyer gains + 10 speed for +1 points per food"
+			},
+			"power2": {
+				"img": load("res://images/mining.jpg"),
+				"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
+			},
+			"power3": {
+				"img": load("res://images/spinning.jpg"),
+				"text": "+1 spin next round"
+			},
+			"power4": {
+				"img": load("res://images/caseoh.jpg"),
+				"text": "Slower metabolism: 3% gain for calories"
+			},
+			"power5": {
+				"img": load("res://images/icon.jpg"),
+				"text": "Every time you lose a tobiko, your food lost capacity raises by 2"
+			}
+		}

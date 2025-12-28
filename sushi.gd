@@ -33,6 +33,8 @@ func _process(delta: float) -> void:
 		if get_meta("type") == "food":
 			global.perfect_round = false
 			global.food_lost += 1
+		if get_meta("name") == "tobiko" and global.powerup5_debounce:
+			global.lost_limit += 2
 		if get_meta("type") == "ice":
 			global.ice_debounce = false #add a timer to make it true again
 			for conveyer in global.conveyers.values():

@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	if round_done:
 		return
 	if global.Points >= global.Goal:
+		round_done = true
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
 				object.queue_free()
@@ -24,8 +25,7 @@ func _process(delta: float) -> void:
 			$PerfectRound.visible = true
 			await get_tree().create_timer(1).timeout
 			$PerfectRound.visible = false
-		get_tree().change_scene_to_file("res://slots.tscn")
-		round_done = true
+		get_tree().call_deferred("change_scene_to_file", "res://slots.tscn")
 			
 	timer.wait_time = global.SpawnTime
 	$Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
