@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	if position.x >= get_viewport_rect().size.x:
 		if get_meta("type") == "food":
 			global.perfect_round = false
-			global.food_lost += 1
+			lose_food()
 		if get_meta("name") == "tobiko" and global.powerup5_debounce:
 			global.lost_limit += 2
 		if get_meta("type") == "ice":
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 							break
 						var obj = randi_range(0,len(conveyer["objects"])-1)
 						if conveyer["objects"][obj].get_meta("type") == "food":
-							global.food_lost += 1
+							lose_food()
 						conveyer["objects"][obj].queue_free()
 						conveyer["objects"].remove_at(obj)
 
@@ -129,3 +129,7 @@ func move_conveyer(conveyer1,conveyer2,conveyerself,conveyernum,ypos):
 		conveyerself.append(self)
 	set_meta("conveyer",conveyernum)
 	position.y = ypos	
+
+func lose_food():
+	global.food_lost += 1
+	global.leaderboard_stats[0] += 1

@@ -17,11 +17,13 @@ func _process(delta: float) -> void:
 		return
 	if global.Points >= global.Goal:
 		round_done = true
+		global.leaderboard_stats[4] += global.Points
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
 				object.queue_free()
 			conveyer["objects"].clear()
 		if global.perfect_round == true:
+			global.leaderboard_stats[2] += 1
 			$PerfectRound.visible = true
 			await get_tree().create_timer(1).timeout
 			$PerfectRound.visible = false

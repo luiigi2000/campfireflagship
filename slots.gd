@@ -9,6 +9,7 @@ var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.leaderboard_stats[1] += 1
 	reset_powerups()
 	$ButtonScale/Button.text = str(original_count)
 
@@ -34,6 +35,7 @@ func _on_button3_pressed() -> void:
 		choose_powerup(choices[2])
 	
 func choose_powerup(chosen):
+	global.leaderboard_stats[3] += 1
 	if chosen == "power1":
 		global.base_speed += 10
 		for food in global.food_data.values():
