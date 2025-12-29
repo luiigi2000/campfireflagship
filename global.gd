@@ -11,10 +11,11 @@ var powerup2_amnt = 10
 var spin_amnt = 1
 var perfect_round = true
 var food_lost := 0
-var lost_limit := 10
+var lost_limit := -1
 var powerup5_debounce := false
-
 var leaderboard_stats = [0,0,0,0,0]
+var total_score := 0
+var podium_scores = [-10,200,500]
 
 
 var conveyers = {
@@ -78,6 +79,8 @@ func reset():
 	food_lost = 0
 	lost_limit = 25
 	powerup5_debounce = false
+	leaderboard_stats = [0,0,0,0,0]
+	total_score = 0
 	
 	conveyers = {
 		"conveyer1":{

@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 			conveyer["objects"].clear()
 		if global.perfect_round == true:
 			global.leaderboard_stats[2] += 1
+			global.total_score += global.Goal
 			$PerfectRound.visible = true
 			await get_tree().create_timer(1).timeout
 			$PerfectRound.visible = false
@@ -45,6 +46,7 @@ func _process(delta: float) -> void:
 	$FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
 	
 	if global.food_lost >= global.lost_limit:
+		global.leaderboard_stats[4] += global.Points
 		get_tree().change_scene_to_file("res://end_screen.tscn")
 
 
