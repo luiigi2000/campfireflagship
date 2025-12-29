@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=7 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://ccjy6jsh2w4io" path="res://images/conveyertxr.jpg" id="2_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b0h1wao83uasa" path="res://images/perfectround.png" id="3_h2yge"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_1bvp3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.79607844, 1, 1, 1)
+position = Vector2(573.75, 323.25003)
+scale = Vector2(1148.5, 647.50006)
+mesh = SubResource("QuadMesh_1bvp3")
 
 [node name="Spawners" type="Node2D" parent="."]
 
@@ -29,16 +38,19 @@ wait_time = 2.0
 position = Vector2(576, 124)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
+texture = ExtResource("2_1bvp3")
 
 [node name="Conveyer2" type="MeshInstance2D" parent="Background"]
 position = Vector2(574, 339)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
+texture = ExtResource("2_1bvp3")
 
 [node name="Conveyer3" type="MeshInstance2D" parent="Background"]
 position = Vector2(577, 559)
 scale = Vector2(1150, 75)
 mesh = SubResource("QuadMesh_ig7tw")
+texture = ExtResource("2_1bvp3")
 
 [node name="Label" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
@@ -69,6 +81,7 @@ offset_left = 989.0
 offset_top = 1.0
 offset_right = 1152.0
 offset_bottom = 39.0
+theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
 
 [node name="FoodLost" type="Label" parent="."]
 offset_left = 13.0

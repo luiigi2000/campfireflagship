@@ -53,6 +53,8 @@ func _process(delta: float) -> void:
 						if conveyer["objects"].is_empty():
 							break
 						var obj = randi_range(0,len(conveyer["objects"])-1)
+						if conveyer["objects"][obj].get_meta("type") == "food":
+							global.food_lost += 1
 						conveyer["objects"][obj].queue_free()
 						conveyer["objects"].remove_at(obj)
 

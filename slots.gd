@@ -122,6 +122,6 @@ func reset_powerups():
 			},
 			"power5": {
 				"img": load("res://images/icon.jpg"),
-				"text": "Every time you lose a tobiko, your food lost capacity raises by 2"
+				"text": "Every time you lose a tobiko, your food lost capacity raises by 2 (does not stack)"
 			}
 		}
