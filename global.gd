@@ -11,11 +11,11 @@ var powerup2_amnt = 10
 var spin_amnt = 1
 var perfect_round = true
 var food_lost := 0
-var lost_limit := -1
+var lost_limit := 25
 var powerup5_debounce := false
 var leaderboard_stats = [0,0,0,0,0]
 var total_score := 0
-var podium_scores = [-10,200,500]
+var podium_scores = []
 
 
 var conveyers = {
