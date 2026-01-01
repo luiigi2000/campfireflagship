@@ -31,7 +31,6 @@ func _process(delta: float) -> void:
 	position.x += speed * delta
 	if position.x >= get_viewport_rect().size.x:
 		if get_meta("type") == "food":
-			global.perfect_round = false
 			lose_food()
 		if get_meta("name") == "tobiko" and global.powerup5_debounce:
 			global.lost_limit += 2
@@ -69,6 +68,7 @@ func _process(delta: float) -> void:
 		position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
 		
 func _on_button_button_down() -> void:
+	$Button.mouse_filter = Control.MOUSE_FILTER_PASS
 	click_timer.start()
 	dragging = true
 	limit = get_global_mouse_position().x +5
@@ -78,13 +78,8 @@ func _on_button_button_down() -> void:
 func _on_button_button_up() -> void:
 	if click_timer.is_stopped() == false:
 		click_timer.stop()
-
-	if position.y < 250:
-		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
-	elif position.y < 450:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
-	else:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+	$Button.mouse_filter = Control.MOUSE_FILTER_STOP
+	move_to_conveyer()
 	dragging = false
 	limit = 1000000
 
@@ -109,12 +104,7 @@ func _on_points_timer_timeout() -> void:
 
 func _on_click_timer_timeout() -> void:
 	dragging = false
-	if position.y < 250:
-		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
-	elif position.y < 450:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
-	else:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+	move_to_conveyer()
 	limit = 1000000
 	timeout_debounce = false
 	await get_tree().create_timer(time_freeze).timeout
@@ -131,5 +121,18 @@ func move_conveyer(conveyer1,conveyer2,conveyerself,conveyernum,ypos):
 	position.y = ypos	
 
 func lose_food():
+	global.perfect_round = false
 	global.food_lost += 1
 	global.leaderboard_stats[0] += 1
+	
+func move_to_conveyer():
+	if global.mouse_location == 1:
+		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
+	elif global.mouse_location == 2:
+		print(2)
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
+	elif global.mouse_location == 3:
+		print(3)
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+	else:
+		print("trash")

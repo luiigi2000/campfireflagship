@@ -16,6 +16,7 @@ var powerup5_debounce := false
 var leaderboard_stats = [0,0,0,0,0]
 var total_score := 0
 var podium_scores = []
+var mouse_location: int
 
 
 var conveyers = {

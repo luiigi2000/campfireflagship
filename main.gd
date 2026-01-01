@@ -96,3 +96,19 @@ func spawn():
 	add_child(instance)
 	instance.position = children[count].position
 	
+
+
+func _on_conveyer_1_collision_mouse_entered() -> void:
+	global.mouse_location = 1
+	print("E")
+
+func _on_conveyer_2_collision_mouse_entered() -> void:
+	global.mouse_location = 2
+
+
+func _on_conveyer_3_collision_mouse_entered() -> void:
+	global.mouse_location = 3
+
+
+func _on_trash_can_collision_mouse_entered() -> void:
+	global.mouse_location = 4
