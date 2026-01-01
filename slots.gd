@@ -54,6 +54,8 @@ func choose_powerup(chosen):
 				food["points"] = roundi(food["points"])
 	elif chosen == "power5":
 		global.powerup5_debounce = true
+	elif chosen == "power6":
+		global.trash_storage += 1
 	original_count -= 1
 	if original_count > 0:
 		debounce = true
@@ -102,6 +104,10 @@ func reset_powerups():
 			"power4": {
 				"img": load("res://images/caseoh.jpg"),
 				"text": "Slower metabolism: 3% gain for calories"
+			},
+			"power6": {
+				"img": load("res://images/racoon.jpg"),
+				"text": "add +1 storage to the trashcan capacity"
 			}
 		}
 	else:
@@ -125,5 +131,9 @@ func reset_powerups():
 			"power5": {
 				"img": load("res://images/icon.jpg"),
 				"text": "Every time you lose a tobiko, your food lost capacity raises by 2 (does not stack)"
+			},
+			"power6": {
+				"img": load("res://images/racoon.jpg"),
+				"text": "add +1 storage to the trashcan capacity"
 			}
 		}
