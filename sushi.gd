@@ -129,10 +129,16 @@ func move_to_conveyer():
 	if global.mouse_location == 1:
 		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
 	elif global.mouse_location == 2:
-		print(2)
 		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
 	elif global.mouse_location == 3:
-		print(3)
 		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
-	else:
-		print("trash")
+	elif global.mouse_location == 4 and global.trash_stored < global.trash_storage:
+		global.trash_stored += 1
+		for conveyer in global.conveyers.values():
+			if conveyer["objects"].has(self):
+				conveyer["objects"].erase(self)
+				break
+		queue_free()
+	elif global.mouse_location == 4:
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+		

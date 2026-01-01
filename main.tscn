@@ -139,6 +139,15 @@ texture = ExtResource("5_lquwl")
 position = Vector2(-13.3333435, -23.333252)
 shape = SubResource("RectangleShape2D_lquwl")
 
+[node name="TrashLabel" type="Label" parent="Trashcan"]
+offset_left = 20.0
+offset_top = -120.0
+offset_right = 169.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+theme_override_font_sizes/font_size = 261
+text = "1"
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
 [connection signal="mouse_entered" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_entered"]

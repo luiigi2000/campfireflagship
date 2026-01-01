@@ -17,6 +17,8 @@ var leaderboard_stats = [0,0,0,0,0]
 var total_score := 0
 var podium_scores = []
 var mouse_location: int
+var trash_storage := 1
+var trash_stored := 0
 
 
 var conveyers = {
@@ -82,6 +84,7 @@ func reset():
 	powerup5_debounce = false
 	leaderboard_stats = [0,0,0,0,0]
 	total_score = 0
+	trash_storage = 1
 	
 	conveyers = {
 		"conveyer1":{

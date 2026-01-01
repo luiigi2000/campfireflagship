@@ -8,6 +8,7 @@ var round_done := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.trash_stored = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()
 
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
 	$FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
+	$Trashcan/TrashLabel.text = str(global.trash_storage - global.trash_stored)
 	
 	if global.food_lost >= global.lost_limit:
 		global.leaderboard_stats[4] += global.Points
@@ -100,7 +102,6 @@ func spawn():
 
 func _on_conveyer_1_collision_mouse_entered() -> void:
 	global.mouse_location = 1
-	print("E")
 
 func _on_conveyer_2_collision_mouse_entered() -> void:
 	global.mouse_location = 2
