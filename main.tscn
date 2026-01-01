@@ -148,8 +148,11 @@ theme_override_colors/font_color = Color(0.2159017, 0.21590173, 0.2159017, 1)
 theme_override_font_sizes/font_size = 261
 text = "1"
 
+[node name="ConveyerMultiplier" type="Timer" parent="."]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
 [connection signal="mouse_entered" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_entered"]
 [connection signal="mouse_entered" from="Background/Conveyer3/Conveyer3Collision" to="." method="_on_conveyer_3_collision_mouse_entered"]
 [connection signal="mouse_entered" from="Trashcan/TrashCanCollision" to="." method="_on_trash_can_collision_mouse_entered"]
+[connection signal="timeout" from="ConveyerMultiplier" to="." method="_on_conveyer_multiplier_timeout"]

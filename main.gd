@@ -11,6 +11,7 @@ func _ready() -> void:
 	global.trash_stored = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()
+	$ConveyerMultiplier.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -97,8 +98,6 @@ func spawn():
 		instance.set_meta("conveyer",3)
 	add_child(instance)
 	instance.position = children[count].position
-	
-
 
 func _on_conveyer_1_collision_mouse_entered() -> void:
 	global.mouse_location = 1
@@ -113,3 +112,22 @@ func _on_conveyer_3_collision_mouse_entered() -> void:
 
 func _on_trash_can_collision_mouse_entered() -> void:
 	global.mouse_location = 4
+	
+func _on_conveyer_multiplier_timeout() -> void:
+	var conveyers_affected = 0
+	for conveyer in global.conveyers:
+		var names = ["nigiri", "tobiko", "californiaroll"]	
+		var dupes = {
+			"nigiri": 0,
+			"tobiko": 0,
+			"californiaroll": 0
+		}
+		for i in global.conveyers[conveyer]["objects"]:
+			var name = i.get_meta("name")
+			if names.has(name):
+				dupes[name] += 1
+		for i in dupes.values():
+			if i == 1:
+				conveyers_affected += 1
+	global.Points += 10
+	$ConveyerMultiplier.start()

@@ -56,7 +56,6 @@ func _process(delta: float) -> void:
 							lose_food()
 						conveyer["objects"][obj].queue_free()
 						conveyer["objects"].remove_at(obj)
-
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
@@ -141,4 +140,4 @@ func move_to_conveyer():
 		queue_free()
 	elif global.mouse_location == 4:
 		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
-		
+	

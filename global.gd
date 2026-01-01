@@ -3,7 +3,7 @@ extends Node
 
 var SpawnTime := 10
 var Points := 0
-var Goal := 0
+var Goal := 100
 var ice_debounce = true
 var base_speed := 50.0
 var powerup2_debounce = false
@@ -19,6 +19,7 @@ var podium_scores = []
 var mouse_location: int
 var trash_storage := 1
 var trash_stored := 0
+var conveyer_additives := 1
 
 
 var conveyers = {
@@ -28,7 +29,7 @@ var conveyers = {
 	},
 	"conveyer2":{
 		"objects":[],
-		"speed": 50.0   
+		"speed": 50.0  
 	},
 	"conveyer3":{
 		"objects":[],
@@ -93,7 +94,7 @@ func reset():
 		},
 		"conveyer2":{
 			"objects":[],
-			"speed": 50.0   
+			"speed": 50.0
 		},
 		"conveyer3":{
 			"objects":[],
