@@ -56,6 +56,8 @@ func choose_powerup(chosen):
 		global.powerup5_debounce = true
 	elif chosen == "power6":
 		global.trash_storage += 1
+	elif chosen == "power7":
+		global.conveyer_additives += .5
 	original_count -= 1
 	if original_count > 0:
 		debounce = true
@@ -108,6 +110,10 @@ func reset_powerups():
 			"power6": {
 				"img": load("res://images/racoon.jpg"),
 				"text": "add +1 storage to the trashcan capacity"
+			},
+			"power7": {
+				"img": load("res://images/596590_v9_bb.jpg"),
+				"text": "add +.5 to conveyer overtime"
 			}
 		}
 	else:
@@ -135,5 +141,9 @@ func reset_powerups():
 			"power6": {
 				"img": load("res://images/racoon.jpg"),
 				"text": "add +1 storage to the trashcan capacity"
+			},
+			"power7": {
+				"img": load("res://images/596590_v9_bb.jpg"),
+				"text": "add +.5 to conveyer overtime"
 			}
 		}

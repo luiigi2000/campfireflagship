@@ -4,6 +4,7 @@ extends Node2D
 @onready var timer := $SpawnTimer
 @onready var spawners := $Spawners
 var round_done := false
+var conveyers_effected = 0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if round_done:
 		return
+	conveyer_multiply()
 	if global.Points >= global.Goal:
 		round_done = true
 		global.leaderboard_stats[4] += global.Points
@@ -113,8 +115,9 @@ func _on_conveyer_3_collision_mouse_entered() -> void:
 func _on_trash_can_collision_mouse_entered() -> void:
 	global.mouse_location = 4
 	
-func _on_conveyer_multiplier_timeout() -> void:
-	var conveyers_affected = 0
+func conveyer_multiply():
+	conveyers_effected = 0
+	var effected = []
 	for conveyer in global.conveyers:
 		var names = ["nigiri", "tobiko", "californiaroll"]	
 		var dupes = {
@@ -123,11 +126,28 @@ func _on_conveyer_multiplier_timeout() -> void:
 			"californiaroll": 0
 		}
 		for i in global.conveyers[conveyer]["objects"]:
-			var name = i.get_meta("name")
-			if names.has(name):
-				dupes[name] += 1
+			if i != null:
+				var name = i.get_meta("name")
+				if names.has(name):
+					dupes[name] += 1
 		for i in dupes.values():
-			if i == 1:
-				conveyers_affected += 1
-	global.Points += 10
+			if i == 3:
+				conveyers_effected += 1
+				var capitalized = conveyer[0].to_upper() + conveyer.substr(1)
+				effected.append(capitalized)
+	if effected.has("Conveyer1"):
+		$Background/Conveyer1.modulate = Color(1,1,0)
+	else:
+		$Background/Conveyer1.modulate = Color(1,1,1)
+	if effected.has("Conveyer2"):
+		$Background/Conveyer2.modulate = Color(1,1,0)
+	else:
+		$Background/Conveyer2.modulate = Color(1,1,1)
+	if effected.has("Conveyer3"):
+		$Background/Conveyer3.modulate = Color(1,1,0)
+	else:
+		$Background/Conveyer3.modulate = Color(1,1,1)
+	
+func _on_conveyer_multiplier_timeout() -> void:
+	global.Points += (global.conveyer_additives * conveyers_effected)
 	$ConveyerMultiplier.start()

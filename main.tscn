@@ -149,6 +149,7 @@ theme_override_font_sizes/font_size = 261
 text = "1"
 
 [node name="ConveyerMultiplier" type="Timer" parent="."]
+wait_time = 2.0
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
