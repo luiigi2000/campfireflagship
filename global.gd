@@ -1,6 +1,8 @@
 
 extends Node
 
+var round := 1
+var bonus_round_1 := round%3==0  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
 var SpawnTime := 10
 var Points := 0
 var Goal := 100
@@ -71,6 +73,7 @@ var food_data = {
 }
 
 func reset():
+	round = 1
 	SpawnTime = 10
 	Points = 0
 	Goal = 100
@@ -86,6 +89,7 @@ func reset():
 	leaderboard_stats = [0,0,0,0,0]
 	total_score = 0
 	trash_storage = 1
+	conveyer_additives = 1
 	
 	conveyers = {
 		"conveyer1":{

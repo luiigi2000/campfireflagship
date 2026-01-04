@@ -10,6 +10,8 @@ metadata/conveyer = 0
 metadata/type = ""
 metadata/speed = 50.0
 metadata/name = ""
+metadata/brother_if_tied = NodePath("")
+metadata/line = NodePath("")
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)

@@ -24,7 +24,8 @@ func _process(delta: float) -> void:
 		global.leaderboard_stats[4] += global.Points
 		for conveyer in global.conveyers.values():
 			for object in conveyer["objects"]:
-				object.queue_free()
+				if object != null:
+					object.queue_free()
 			conveyer["objects"].clear()
 		if global.perfect_round == true:
 			global.leaderboard_stats[2] += 1
@@ -56,9 +57,11 @@ func _process(delta: float) -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	spawn()
+	if global.bonus_round_1:
+		tie_foods()
+	else:
+		spawn()
 	timer.start()
-
 
 func spawn():
 	var children = spawners.get_children()
@@ -100,6 +103,14 @@ func spawn():
 		instance.set_meta("conveyer",3)
 	add_child(instance)
 	instance.position = children[count].position
+	return instance
+	
+func tie_foods():
+	var brothers = []
+	for i in range(2):
+		brothers.append(spawn())
+	brothers[0].set_meta("brother_if_tied", brothers[1])
+	brothers[1].set_meta("brother_if_tied", brothers[0])
 
 func _on_conveyer_1_collision_mouse_entered() -> void:
 	global.mouse_location = 1

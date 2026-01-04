@@ -10,8 +10,12 @@ var powerup2added = false
 @onready var click_timer = $ClickTimer
 var timeout_debounce = true
 var time_freeze := 2.5
+var line := Line2D.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	line.top_level = true
+	set_meta("line",line)
+	add_child(line)
 	if get_meta("type") == "food":
 		for food in global.food_data.values():
 			if food["name"] == get_meta("name"):
@@ -25,24 +29,36 @@ func _process(delta: float) -> void:
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
 			break
+	if global.bonus_round_1 and line != null:
+		line.width = 3
+		line.points = [global_position,get_meta("brother_if_tied").global_position]
 	if global.ice_debounce:
 		for i in global.conveyers.keys():
 			global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
 	position.x += speed * delta
 	if position.x >= get_viewport_rect().size.x:
+		if global.bonus_round_1 and line != null:
+			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
+			line.queue_free()
 		if get_meta("type") == "food":
 			lose_food()
 		if get_meta("name") == "tobiko" and global.powerup5_debounce:
 			global.lost_limit += 2
 		if get_meta("type") == "ice":
 			global.ice_debounce = false #add a timer to make it true again
+			var chosen_conveyer
 			for conveyer in global.conveyers.values():
 				if conveyer["objects"].has(self):
+					chosen_conveyer = conveyer
+					for object in conveyer["objects"]:
+						object.modulate = Color(0,1,1)
 					conveyer["speed"] = 0
 					break
 			visible = false
 			await get_tree().create_timer(2.0).timeout
 			global.ice_debounce = true
+			for object in chosen_conveyer["objects"]:
+				object.modulate = Color(1,1,1)
 		if get_meta("type") == "bomb":
 			for conveyer in global.conveyers.values():
 				if conveyer["objects"].size() > 0 and conveyer["objects"].has(self):
@@ -54,6 +70,10 @@ func _process(delta: float) -> void:
 						var obj = randi_range(0,len(conveyer["objects"])-1)
 						if conveyer["objects"][obj].get_meta("type") == "food":
 							lose_food()
+						if global.bonus_round_1:
+							conveyer["objects"][obj].get_meta("line").queue_free()
+							conveyer["objects"][obj].get_meta("brother_if_tied").get_meta("line").queue_free()
+							conveyer["objects"][obj].get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
 						conveyer["objects"][obj].queue_free()
 						conveyer["objects"].remove_at(obj)
 		for conveyer in global.conveyers.values():
@@ -136,6 +156,8 @@ func move_to_conveyer():
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
+				if global.bonus_round_1:
+					get_meta("brother_if_tied").queue_free()
 				break
 		queue_free()
 	elif global.mouse_location == 4:

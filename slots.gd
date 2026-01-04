@@ -9,6 +9,7 @@ var choices = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	global.round += 1
 	global.leaderboard_stats[1] += 1
 	reset_powerups()
 	$ButtonScale/Button.text = str(original_count)
@@ -113,7 +114,7 @@ func reset_powerups():
 			},
 			"power7": {
 				"img": load("res://images/596590_v9_bb.jpg"),
-				"text": "add +.5 to conveyer overtime"
+				"text": "add +.5 calory gain to conveyer overtime"
 			}
 		}
 	else:
@@ -136,7 +137,7 @@ func reset_powerups():
 			},
 			"power5": {
 				"img": load("res://images/icon.jpg"),
-				"text": "Every time you lose a tobiko, your food lost capacity raises by 2 (does not stack)"
+				"text": "Every time you lose a californiaroll, your food lost capacity raises by 2 (does not stack)"
 			},
 			"power6": {
 				"img": load("res://images/racoon.jpg"),
@@ -144,6 +145,6 @@ func reset_powerups():
 			},
 			"power7": {
 				"img": load("res://images/596590_v9_bb.jpg"),
-				"text": "add +.5 to conveyer overtime"
+				"text": "add +.5 calory gain to conveyer overtime"
 			}
 		}
