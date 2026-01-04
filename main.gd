@@ -107,8 +107,26 @@ func spawn():
 	
 func tie_foods():
 	var brothers = []
-	for i in range(2):
-		brothers.append(spawn())
+	while true:
+		if brothers.is_empty():
+			for i in range(2):
+				brothers.append(spawn())
+		elif brothers[0].position != brothers[1].position:
+			break
+		else:
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].has(brothers[0]):
+					conveyer["objects"].erase(brothers[0])
+					brothers[0].queue_free()
+					return
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].has(brothers[1]):
+					conveyer["objects"].erase(brothers[1])
+					brothers[1].queue_free()
+					return
+			brothers.clear()
+			for i in range(2):
+				brothers.append(spawn())
 	brothers[0].set_meta("brother_if_tied", brothers[1])
 	brothers[1].set_meta("brother_if_tied", brothers[0])
 
