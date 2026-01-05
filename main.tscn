@@ -1,37 +1,37 @@
-[gd_scene load_steps=9 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=10 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://ccjy6jsh2w4io" path="res://images/conveyertxr.jpg" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cr3yqarbuubex" path="res://images/conveyer.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b0h1wao83uasa" path="res://images/perfectround.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/trashcan.png" id="5_lquwl"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_1bvp3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(506.6667, 526.6665)
+size = Vector2(506.6667, 596.7051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
+size = Vector2(507.6455, 432.5016)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-self_modulate = Color(0.79607844, 1, 1, 1)
-position = Vector2(573.75, 323.25003)
-scale = Vector2(1148.5, 647.50006)
-mesh = SubResource("QuadMesh_1bvp3")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("2_7mycd")
 
 [node name="Spawners" type="Node2D" parent="."]
 
 [node name="Spawner1" type="Node2D" parent="Spawners"]
-position = Vector2(-50, 60)
+position = Vector2(-48, 180)
 
 [node name="Spawner2" type="Node2D" parent="Spawners"]
-position = Vector2(-50, 340)
+position = Vector2(-51, 323)
 
 [node name="Spawner3" type="Node2D" parent="Spawners"]
-position = Vector2(-50, 560)
+position = Vector2(-51, 470)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -39,8 +39,8 @@ wait_time = 2.0
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Conveyer1" type="MeshInstance2D" parent="Background"]
-position = Vector2(576, 124)
-scale = Vector2(1150, 75)
+position = Vector2(575, 180)
+scale = Vector2(1150, 72)
 mesh = SubResource("QuadMesh_ig7tw")
 texture = ExtResource("2_1bvp3")
 
@@ -49,12 +49,13 @@ position = Vector2(0.022608671, 0.06666665)
 scale = Vector2(0.0019967835, 0.005886901)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer1/Conveyer1Collision"]
-position = Vector2(-13.3333435, -23.333252)
+position = Vector2(-9.145142, -135.28445)
+scale = Vector2(1, 0.99999976)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Conveyer2" type="MeshInstance2D" parent="Background"]
-position = Vector2(574, 339)
-scale = Vector2(1150, 75)
+position = Vector2(575, 324)
+scale = Vector2(1150, 72)
 mesh = SubResource("QuadMesh_ig7tw")
 texture = ExtResource("2_1bvp3")
 
@@ -63,20 +64,20 @@ position = Vector2(0.026956508, -0.2799998)
 scale = Vector2(0.0019767303, -0.0045600357)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer2/Conveyer2Collision"]
-position = Vector2(-13.3333435, -23.333252)
-shape = SubResource("RectangleShape2D_lquwl")
+position = Vector2(-13.636917, -64.44873)
+shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Conveyer3" type="MeshInstance2D" parent="Background"]
-position = Vector2(575, 530)
-scale = Vector2(1150, 75)
+position = Vector2(575, 468)
+scale = Vector2(1150, 72)
 mesh = SubResource("QuadMesh_ig7tw")
 texture = ExtResource("2_1bvp3")
 
 [node name="Conveyer3Collision" type="Area2D" parent="Background/Conveyer3"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Conveyer3/Conveyer3Collision"]
-position = Vector2(-0.5008696, -0.8266667)
-polygon = PackedVector2Array(0, -0.6933336, 0.9982609, -0.6933336, 0.9991305, 2.3866668, 0.066086955, 2.3866668, 0.066086955, 1.3200002, 0, 1.3200002)
+position = Vector2(-0.5008696, 0.11111134)
+polygon = PackedVector2Array(0, -1.0972228, 1.0034783, -1.0972228, 1.0026087, 2.3888884, 0.066086955, 2.3866668, 0.066086955, 1.3200002, 0, 1.3200002)
 
 [node name="Label" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)

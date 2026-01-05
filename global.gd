@@ -55,7 +55,7 @@ var food_data = {
 	"californiaroll":{
 		"points": 1,
 		"speed": 50,
-		"image": load("res://images/download (1).jpg"),
+		"image": load("res://images/caliroll-export.png"),
 		"name":"californiaroll"
 	},
 	"ice":{
@@ -74,6 +74,7 @@ var food_data = {
 
 func reset():
 	round = 1
+	bonus_round_1 = round%3==0
 	SpawnTime = 10
 	Points = 0
 	Goal = 100
@@ -122,7 +123,7 @@ func reset():
 		"californiaroll":{
 			"points": 1,
 			"speed": 50,
-			"image": load("res://images/download (1).jpg"),
+			"image": load("res://images/caliroll-export.png"),
 			"name":"californiaroll"
 		},
 		"ice":{

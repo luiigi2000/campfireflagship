@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
 			break
-	if global.bonus_round_1 and line != null:
+	if global.bonus_round_1 and line != null and not (get_meta("brother_if_tied") is NodePath):
 		line.width = 3
 		line.points = [global_position,get_meta("brother_if_tied").global_position]
 	if global.ice_debounce:
@@ -146,17 +146,17 @@ func lose_food():
 	
 func move_to_conveyer():
 	if global.mouse_location == 1:
-		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,125)
+		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,180.0)
 	elif global.mouse_location == 2:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,350)
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,323.0)
 	elif global.mouse_location == 3:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,470.0)
 	elif global.mouse_location == 4 and global.trash_stored < global.trash_storage:
 		global.trash_stored += 1
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
-				if global.bonus_round_1:
+				if global.bonus_round_1  and not (get_meta("brother_if_tied") is NodePath):
 					get_meta("brother_if_tied").queue_free()
 				break
 		queue_free()
