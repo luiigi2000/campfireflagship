@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6vkkhwvaxpkv"
-path="res://.godot/imported/slots.png-bb8615057eb05961c1f4f0ef0f863100.ctex"
+uid="uid://ccjy6jsh2w4io"
+path="res://.godot/imported/conveyertxr.jpg-15624beb7c50a382c8cd77c62b69addc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/slots.png"
-dest_files=["res://.godot/imported/slots.png-bb8615057eb05961c1f4f0ef0f863100.ctex"]
+source_file="res://images/Background/conveyertxr.jpg"
+dest_files=["res://.godot/imported/conveyertxr.jpg-15624beb7c50a382c8cd77c62b69addc.ctex"]
 
 [params]
 

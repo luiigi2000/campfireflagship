@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b81ilmniks18a"]
+[gd_scene load_steps=4 format=3 uid="uid://b81ilmniks18a"]
 
 [ext_resource type="Script" uid="uid://cwsdkvnrg83dk" path="res://end_screen.gd" id="1_my301"]
+[ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="2_abjgy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my301"]
 bg_color = Color(0.6039216, 0.6, 0.6, 1)
@@ -13,6 +14,7 @@ offset_left = 76.0
 offset_top = 375.0
 offset_right = 388.0
 offset_bottom = 467.0
+theme_override_fonts/font = ExtResource("2_abjgy")
 theme_override_font_sizes/font_size = 61
 text = "Play Again"
 
@@ -21,6 +23,7 @@ offset_left = 83.0
 offset_top = 4.0
 offset_right = 1052.0
 offset_bottom = 190.0
+theme_override_fonts/font = ExtResource("2_abjgy")
 theme_override_font_sizes/font_size = 136
 text = "Total Score: "
 
@@ -29,6 +32,7 @@ offset_left = 162.0
 offset_top = 212.0
 offset_right = 314.0
 offset_bottom = 339.0
+theme_override_fonts/font = ExtResource("2_abjgy")
 text = "Food lost:
 Rounds Completed:
 Perfect Rounds:
@@ -40,6 +44,7 @@ offset_left = 792.0
 offset_top = 252.0
 offset_right = 1033.0
 offset_bottom = 574.0
+theme_override_fonts/font = ExtResource("2_abjgy")
 theme_override_font_sizes/font_size = 26
 theme_override_styles/normal = SubResource("StyleBoxFlat_my301")
 
@@ -48,6 +53,7 @@ offset_left = 828.0
 offset_top = 253.0
 offset_right = 990.0
 offset_bottom = 289.0
+theme_override_fonts/font = ExtResource("2_abjgy")
 theme_override_font_sizes/font_size = 26
 text = "LeaderBoard
 "

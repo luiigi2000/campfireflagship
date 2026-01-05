@@ -90,61 +90,36 @@ func spin():
 		end_debounce = true
 		
 func reset_powerups():
+	powerups = {
+		"power1": {
+			"img": load("res://images/Slots/wallywest.jpg"),
+			"text": "conveyer gains + 10 speed for +1 points per food"
+		},
+		"power2": {
+			"img": load("res://images/Slots/mining.jpg"),
+			"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
+		},
+		"power3": {
+			"img": load("res://images/Slots/spinning.jpg"),
+			"text": "+1 spin next round"
+		},
+		"power4": {
+			"img": load("res://images/Slots/caseoh.jpg"),
+			"text": "Slower metabolism: 3% gain for calories"
+		},
+		"power5": {
+			"img": load("res://images/Slots/icon.jpg"),
+			"text": "Every time you lose a californiaroll, your food lost capacity raises by 2 (does not stack)"
+		},
+		"power6": {
+			"img": load("res://images/Slots/racoon.jpg"),
+			"text": "add +1 storage to the trashcan capacity"
+		},
+		"power7": {
+			"img": load("res://images/Slots/596590_v9_bb.jpg"),
+			"text": "add +.5 calory gain to conveyer overtime"
+		}
+	}
 	if global.powerup5_debounce:
-		powerups = {
-			"power1": {
-				"img": load("res://images/wallywest.jpg"),
-				"text": "conveyer gains + 10 speed for +1 points per food"
-			},
-			"power2": {
-				"img": load("res://images/mining.jpg"),
-				"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
-			},
-			"power3": {
-				"img": load("res://images/spinning.jpg"),
-				"text": "+1 spin next round"
-			},
-			"power4": {
-				"img": load("res://images/caseoh.jpg"),
-				"text": "Slower metabolism: 3% gain for calories"
-			},
-			"power6": {
-				"img": load("res://images/racoon.jpg"),
-				"text": "add +1 storage to the trashcan capacity"
-			},
-			"power7": {
-				"img": load("res://images/596590_v9_bb.jpg"),
-				"text": "add +.5 calory gain to conveyer overtime"
-			}
-		}
-	else:
-		powerups = {
-			"power1": {
-				"img": load("res://images/wallywest.jpg"),
-				"text": "conveyer gains + 10 speed for +1 points per food"
-			},
-			"power2": {
-				"img": load("res://images/mining.jpg"),
-				"text": "very low chance for a food to occationally give " + str(global.powerup2_amnt) + " points"
-			},
-			"power3": {
-				"img": load("res://images/spinning.jpg"),
-				"text": "+1 spin next round"
-			},
-			"power4": {
-				"img": load("res://images/caseoh.jpg"),
-				"text": "Slower metabolism: 3% gain for calories"
-			},
-			"power5": {
-				"img": load("res://images/icon.jpg"),
-				"text": "Every time you lose a californiaroll, your food lost capacity raises by 2 (does not stack)"
-			},
-			"power6": {
-				"img": load("res://images/racoon.jpg"),
-				"text": "add +1 storage to the trashcan capacity"
-			},
-			"power7": {
-				"img": load("res://images/596590_v9_bb.jpg"),
-				"text": "add +.5 calory gain to conveyer overtime"
-			}
-		}
+		powerups.remove("power5")
+	

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ch5rjcsty2icm"
-path="res://.godot/imported/trashcan.png-a7223ae17d8a711f8864b9c5b0f306af.ctex"
+uid="uid://bn3quarg8mp2a"
+path="res://.godot/imported/tobiko-roll-1200.jpg-732737627d0dd8da57089a11f2866574.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/trashcan.png"
-dest_files=["res://.godot/imported/trashcan.png-a7223ae17d8a711f8864b9c5b0f306af.ctex"]
+source_file="res://images/Sushi/tobiko-roll-1200.jpg"
+dest_files=["res://.godot/imported/tobiko-roll-1200.jpg-732737627d0dd8da57089a11f2866574.ctex"]
 
 [params]
 

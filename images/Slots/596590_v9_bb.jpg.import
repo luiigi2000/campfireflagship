@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blh3qa6gbh86l"
-path="res://.godot/imported/caliroll-export.png-b43c76bba7a18b80050f14dce4c4495c.ctex"
+uid="uid://cq70053k48x6s"
+path.s3tc="res://.godot/imported/596590_v9_bb.jpg-78b558051d652709f519cee7795476be.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://images/caliroll-export.png"
-dest_files=["res://.godot/imported/caliroll-export.png-b43c76bba7a18b80050f14dce4c4495c.ctex"]
+source_file="res://images/Slots/596590_v9_bb.jpg"
+dest_files=["res://.godot/imported/596590_v9_bb.jpg-78b558051d652709f519cee7795476be.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +24,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

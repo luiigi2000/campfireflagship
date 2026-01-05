@@ -1,11 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=11 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://ccjy6jsh2w4io" path="res://images/conveyertxr.jpg" id="2_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://cr3yqarbuubex" path="res://images/conveyer.png" id="2_7mycd"]
+[ext_resource type="Texture2D" uid="uid://ccjy6jsh2w4io" path="res://images/Background/conveyertxr.jpg" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://cr3yqarbuubex" path="res://images/Background/conveyer.png" id="2_7mycd"]
 [ext_resource type="Texture2D" uid="uid://b0h1wao83uasa" path="res://images/perfectround.png" id="3_h2yge"]
-[ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/trashcan.png" id="5_lquwl"]
+[ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="4_272bh"]
+[ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/Background/trashcan.png" id="5_lquwl"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
@@ -82,33 +83,37 @@ polygon = PackedVector2Array(0, -1.0972228, 1.0034783, -1.0972228, 1.0026087, 2.
 [node name="Label" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 1111.0
-offset_top = 65.0
+offset_top = 74.0
 offset_right = 1151.0
-offset_bottom = 88.0
+offset_bottom = 97.0
+theme_override_fonts/font = ExtResource("4_272bh")
 text = "100"
 
 [node name="Label2" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 1109.0
-offset_top = 279.0
+offset_top = 288.0
 offset_right = 1149.0
-offset_bottom = 302.0
+offset_bottom = 311.0
+theme_override_fonts/font = ExtResource("4_272bh")
 text = "100"
 
 [node name="Label3" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 1104.0
-offset_top = 468.0
+offset_top = 477.0
 offset_right = 1144.0
-offset_bottom = 491.0
+offset_bottom = 500.0
+theme_override_fonts/font = ExtResource("4_272bh")
 text = "100"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 989.0
-offset_top = 1.0
+offset_top = 10.0
 offset_right = 1152.0
-offset_bottom = 39.0
+offset_bottom = 48.0
 theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
+theme_override_fonts/font = ExtResource("4_272bh")
 
 [node name="FoodLost" type="Label" parent="."]
 offset_left = 13.0
@@ -116,6 +121,7 @@ offset_top = 4.0
 offset_right = 176.0
 offset_bottom = 42.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_272bh")
 text = "0/100"
 
 [node name="menu" type="Sprite2D" parent="."]
@@ -142,10 +148,11 @@ shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="TrashLabel" type="Label" parent="Trashcan"]
 offset_left = 20.0
-offset_top = -120.0
+offset_top = -60.0
 offset_right = 169.0
-offset_bottom = 236.0
+offset_bottom = 296.0
 theme_override_colors/font_color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+theme_override_fonts/font = ExtResource("4_272bh")
 theme_override_font_sizes/font_size = 261
 text = "1"
 

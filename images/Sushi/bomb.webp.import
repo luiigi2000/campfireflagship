@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvq5o6c1l3ncb"
-path="res://.godot/imported/wallywest.jpg-61d1044a9502b0d886667561b4878b3c.ctex"
+uid="uid://ox57iq43c3gj"
+path="res://.godot/imported/bomb.webp-ea04a2c8e43760641e5c971654b728d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/wallywest.jpg"
-dest_files=["res://.godot/imported/wallywest.jpg-61d1044a9502b0d886667561b4878b3c.ctex"]
+source_file="res://images/Sushi/bomb.webp"
+dest_files=["res://.godot/imported/bomb.webp-ea04a2c8e43760641e5c971654b728d6.ctex"]
 
 [params]
 

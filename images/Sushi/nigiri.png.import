@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bofl1xjtuif8f"
-path="res://.godot/imported/gambling.png-ac3c18c25cb42c90a7bdf752553f800f.ctex"
+uid="uid://s3vtkmbqnyay"
+path="res://.godot/imported/nigiri.png-da82d7a8065c110ef5b202f1d0a80b7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/gambling.png"
-dest_files=["res://.godot/imported/gambling.png-ac3c18c25cb42c90a7bdf752553f800f.ctex"]
+source_file="res://images/Sushi/nigiri.png"
+dest_files=["res://.godot/imported/nigiri.png-da82d7a8065c110ef5b202f1d0a80b7c.ctex"]
 
 [params]
 

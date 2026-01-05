@@ -83,12 +83,12 @@ func spawn():
 		instance.set_meta("type", "food")
 		instance.set_meta("name","tobiko")
 	elif image <= 80:
-		instance.texture = load("res://images/images (1).jpg")
+		instance.texture = global.food_data["ice"]["image"]
 		instance.set_meta("name","ice")
 		instance.set_meta("type", "ice")
 	elif image <= 100:
 		instance.scale = Vector2(.05,.05)
-		instance.texture = load("res://images/bomb.webp")
+		instance.texture = global.food_data["ice"]["bomb"]
 		instance.set_meta("name","bomb")
 		instance.set_meta("type", "bomb")
 		

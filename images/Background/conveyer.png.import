@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn3quarg8mp2a"
-path="res://.godot/imported/tobiko-roll-1200.jpg-e27e5d2bc59a07af3beb7570ea881669.ctex"
+uid="uid://cr3yqarbuubex"
+path="res://.godot/imported/conveyer.png-e7b2350cde32485e2182518392e0e7c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/tobiko-roll-1200.jpg"
-dest_files=["res://.godot/imported/tobiko-roll-1200.jpg-e27e5d2bc59a07af3beb7570ea881669.ctex"]
+source_file="res://images/Background/conveyer.png"
+dest_files=["res://.godot/imported/conveyer.png-e7b2350cde32485e2182518392e0e7c5.ctex"]
 
 [params]
 

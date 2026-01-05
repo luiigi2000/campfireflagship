@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de8r8rtct1m41"
-path="res://.godot/imported/mining.jpg-8e7ebd97b22a8ce92f864aa5569ef5e2.ctex"
+uid="uid://cmgtalxjq3at6"
+path="res://.godot/imported/spinning.jpg-45b801e18061a183adde1282a11c0030.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/mining.jpg"
-dest_files=["res://.godot/imported/mining.jpg-8e7ebd97b22a8ce92f864aa5569ef5e2.ctex"]
+source_file="res://images/Slots/spinning.jpg"
+dest_files=["res://.godot/imported/spinning.jpg-45b801e18061a183adde1282a11c0030.ctex"]
 
 [params]
 

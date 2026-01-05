@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmgtalxjq3at6"
-path="res://.godot/imported/spinning.jpg-4fe71b82a51d47e8739fd7d8ad81e527.ctex"
+uid="uid://cedib5u8gu16w"
+path="res://.godot/imported/images (1).jpg-a6c0ef8041eb538fd9e730ec2b9befd7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/spinning.jpg"
-dest_files=["res://.godot/imported/spinning.jpg-4fe71b82a51d47e8739fd7d8ad81e527.ctex"]
+source_file="res://images/Sushi/images (1).jpg"
+dest_files=["res://.godot/imported/images (1).jpg-a6c0ef8041eb538fd9e730ec2b9befd7.ctex"]
 
 [params]
 

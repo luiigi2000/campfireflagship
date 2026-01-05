@@ -1,76 +1,35 @@
 
 extends Node
 
-var round := 1
-var bonus_round_1 := round%3==0  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
-var SpawnTime := 10
-var Points := 0
-var Goal := 100
-var ice_debounce = true
-var base_speed := 50.0
-var powerup2_debounce = false
-var powerup2_amnt = 10
-var spin_amnt = 1
-var perfect_round = true
-var food_lost := 0
-var lost_limit := 25
-var powerup5_debounce := false
-var leaderboard_stats = [0,0,0,0,0]
-var total_score := 0
+var round 
+var bonus_round_1  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
+var SpawnTime
+var Points 
+var Goal 
+var ice_debounce
+var base_speed 
+var powerup2_debounce 
+var powerup2_amnt 
+var spin_amnt 
+var perfect_round 
+var food_lost 
+var lost_limit 
+var powerup5_debounce 
+var leaderboard_stats 
+var total_score 
 var podium_scores = []
 var mouse_location: int
-var trash_storage := 1
-var trash_stored := 0
-var conveyer_additives := 1
+var trash_storage
+var trash_stored
+var conveyer_additives 
 
 
-var conveyers = {
-	"conveyer1":{
-		"objects":[],
-		"speed": 50.0
-	},
-	"conveyer2":{
-		"objects":[],
-		"speed": 50.0  
-	},
-	"conveyer3":{
-		"objects":[],
-		"speed": 50.0
-	}
-}
+var conveyers = {}
 #speed is still given to the conveyer, could change in the future
-var food_data = {
-	"nigiri":{
-		"points": 2,
-		"speed": 50,
-		"image": load("res://images/nigiri-sushi-1200.jpg"),
-		"name":"nigiri"
-	},
-	"tobiko":{
-		"points": 3,
-		"speed": 50,
-		"image": load("res://images/tobiko-roll-1200.jpg"),
-		"name":"tobiko"
-	},
-	"californiaroll":{
-		"points": 1,
-		"speed": 50,
-		"image": load("res://images/caliroll-export.png"),
-		"name":"californiaroll"
-	},
-	"ice":{
-		"points": 0,
-		"speed": 50,
-		"image": load("res://images/images (1).jpg"),
-		"name": "ice"
-	},
-	"bomb":{
-		"points": 0,
-		"speed": 50,
-		"image": load("res://images/bomb.webp"),
-		"name":"bomb"
-	}
-}
+var food_data = {}
+
+func _ready() -> void:
+	reset()
 
 func reset():
 	round = 1
@@ -111,31 +70,31 @@ func reset():
 		"nigiri":{
 			"points": 2,
 			"speed": 50,
-			"image": load("res://images/nigiri-sushi-1200.jpg"),
+			"image": load("res://images/Sushi/nigiri.png"),
 			"name":"nigiri"
 		},
 		"tobiko":{
 			"points": 3,
 			"speed": 50,
-			"image": load("res://images/tobiko-roll-1200.jpg"),
+			"image": load("res://images/Sushi/tobiko-roll-1200.jpg"),
 			"name":"tobiko"
 		},
 		"californiaroll":{
 			"points": 1,
 			"speed": 50,
-			"image": load("res://images/caliroll-export.png"),
+			"image": load("res://images/Sushi/caliroll-export-export.png"),
 			"name":"californiaroll"
 		},
 		"ice":{
 			"points": 0,
 			"speed": 50,
-			"image": load("res://images/images (1).jpg"),
+			"image": load("res://images/Sushi/images (1).jpg"),
 			"name": "ice"
 		},
 		"bomb":{
 			"points": 0,
 			"speed": 50,
-			"image": load("res://images/bomb.webp"),
+			"image": load("res://images/Sushi/bomb.webp"),
 			"name":"bomb"
 		}
 	}

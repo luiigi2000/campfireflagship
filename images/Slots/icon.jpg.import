@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bg7np3k3nf4iu"
-path="res://.godot/imported/caseoh.jpg-c8711abff33c02c18724345c2d11149a.ctex"
+uid="uid://bkqv5mmp0ataj"
+path="res://.godot/imported/icon.jpg-86f15095412646924d15bedf0e414bc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/caseoh.jpg"
-dest_files=["res://.godot/imported/caseoh.jpg-c8711abff33c02c18724345c2d11149a.ctex"]
+source_file="res://images/Slots/icon.jpg"
+dest_files=["res://.godot/imported/icon.jpg-86f15095412646924d15bedf0e414bc5.ctex"]
 
 [params]
 

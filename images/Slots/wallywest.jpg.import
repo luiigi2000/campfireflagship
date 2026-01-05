@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxw0fi2jsux35"
-path="res://.godot/imported/nigiri-sushi-1200.jpg-f49c2c9d8bda4f8f75931276824863ff.ctex"
+uid="uid://cvq5o6c1l3ncb"
+path="res://.godot/imported/wallywest.jpg-83011f3cd435c9c6f18a975b46759167.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/nigiri-sushi-1200.jpg"
-dest_files=["res://.godot/imported/nigiri-sushi-1200.jpg-f49c2c9d8bda4f8f75931276824863ff.ctex"]
+source_file="res://images/Slots/wallywest.jpg"
+dest_files=["res://.godot/imported/wallywest.jpg-83011f3cd435c9c6f18a975b46759167.ctex"]
 
 [params]
 

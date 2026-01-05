@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://doovsypp0ii44"]
+[gd_scene load_steps=3 format=3 uid="uid://doovsypp0ii44"]
 
 [ext_resource type="Script" uid="uid://dja8neebpbqni" path="res://sushi.gd" id="1_w0bqi"]
+[ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="2_si702"]
 
 [node name="Image" type="Sprite2D"]
 scale = Vector2(0.2, 0.2)
@@ -20,6 +21,7 @@ offset_top = -364.99997
 offset_right = -388.1209
 offset_bottom = -343.434
 scale = Vector2(29.576895, 37.07801)
+theme_override_fonts/font = ExtResource("2_si702")
 
 [node name="PointsTimer" type="Timer" parent="."]
 wait_time = 5.0
@@ -31,6 +33,7 @@ offset_top = -1135.0
 offset_right = 349.99994
 offset_bottom = -370.00006
 theme_override_colors/default_color = Color(0, 1, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_si702")
 theme_override_font_sizes/normal_font_size = 576
 fit_content = true
 scroll_active = false
@@ -42,6 +45,7 @@ offset_top = 444.99988
 offset_right = 364.99994
 offset_bottom = 1209.9998
 theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_si702")
 theme_override_font_sizes/normal_font_size = 326
 text = "+10"
 fit_content = true
