@@ -9,6 +9,8 @@ var conveyers_effected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if global.bonus_round[1]:
+		stagger_conveyers()
 	global.trash_stored = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()
@@ -20,20 +22,7 @@ func _process(delta: float) -> void:
 		return
 	conveyer_multiply()
 	if global.Points >= global.Goal:
-		round_done = true
-		global.leaderboard_stats[4] += global.Points
-		for conveyer in global.conveyers.values():
-			for object in conveyer["objects"]:
-				if object != null:
-					object.queue_free()
-			conveyer["objects"].clear()
-		if global.perfect_round == true:
-			global.leaderboard_stats[2] += 1
-			global.total_score += global.Goal
-			$PerfectRound.visible = true
-			await get_tree().create_timer(1).timeout
-			$PerfectRound.visible = false
-		get_tree().call_deferred("change_scene_to_file", "res://slots.tscn")
+		end_round()
 			
 	timer.wait_time = global.SpawnTime
 	$Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
@@ -57,7 +46,7 @@ func _process(delta: float) -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	if global.bonus_round_1:
+	if global.bonus_round[0]:
 		tie_foods()
 	else:
 		spawn()
@@ -88,7 +77,7 @@ func spawn():
 		instance.set_meta("type", "ice")
 	elif image <= 100:
 		instance.scale = Vector2(.05,.05)
-		instance.texture = global.food_data["ice"]["bomb"]
+		instance.texture = global.food_data["bomb"]["image"]
 		instance.set_meta("name","bomb")
 		instance.set_meta("type", "bomb")
 		
@@ -180,3 +169,33 @@ func conveyer_multiply():
 func _on_conveyer_multiplier_timeout() -> void:
 	global.Points += (global.conveyer_additives * conveyers_effected)
 	$ConveyerMultiplier.start()
+	
+func end_round():
+	round_done = true
+	global.leaderboard_stats[4] += global.Points
+	for conveyer in global.conveyers.values():
+		for object in conveyer["objects"]:
+			if object != null:
+				object.queue_free()
+		conveyer["objects"].clear()
+	if global.perfect_round == true:
+		global.leaderboard_stats[2] += 1
+		global.total_score += global.Goal
+		$PerfectRound.visible = true
+		await get_tree().create_timer(1).timeout
+		$PerfectRound.visible = false
+	get_tree().call_deferred("change_scene_to_file", "res://slots.tscn")
+	
+func stagger_conveyers():
+	for i in range(3):
+		var count = randi_range(1,2)
+		if count == 1:
+			spawners.get_child(i).position.x = -(position.x) + get_viewport_rect().size.x
+			var conv
+			if i == 0:
+				conv = "conveyer1"
+			elif i == 1:
+				conv = "conveyer2"
+			else:
+				conv = "conveyer3"
+			global.conveyers[conv]["speed"] =- global.conveyers[conv]["speed"]

@@ -2,7 +2,7 @@
 extends Node
 
 var round 
-var bonus_round_1  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
+var bonus_round  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
 var SpawnTime
 var Points 
 var Goal 
@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func reset():
 	round = 1
-	bonus_round_1 = round%3==0
+	bonus_round = [round%3==0,round%4==0]
 	SpawnTime = 10
 	Points = 0
 	Goal = 100

@@ -11,6 +11,8 @@ var powerup2added = false
 var timeout_debounce = true
 var time_freeze := 2.5
 var line := Line2D.new()
+var ready_to_delete := false
+var dir
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	line.top_level = true
@@ -22,6 +24,9 @@ func _ready() -> void:
 				$Points.text = "+" + str(food["points"])
 				break
 	timer.start()
+	##this makes sure it wont delete right after spawn on the the right for bonus round2
+	await get_tree().create_timer(5).timeout
+	ready_to_delete = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -29,15 +34,21 @@ func _process(delta: float) -> void:
 		if conveyer["objects"].has(self):
 			speed = conveyer["speed"]
 			break
-	if global.bonus_round_1 and line != null and not (get_meta("brother_if_tied") is NodePath):
+	if global.bonus_round[0] and line != null and not (get_meta("brother_if_tied") is NodePath):
 		line.width = 3
 		line.points = [global_position,get_meta("brother_if_tied").global_position]
 	if global.ice_debounce:
 		for i in global.conveyers.keys():
-			global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
+			if global.bonus_round[1]:
+				if global.conveyers[i]["speed"] < 0:
+					global.conveyers[i]["speed"] =  -global.base_speed - (10 * len(global.conveyers[i]["objects"]))
+				else:
+					global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
+			else:
+				global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
 	position.x += speed * delta
-	if position.x >= get_viewport_rect().size.x:
-		if global.bonus_round_1 and line != null:
+	if (position.x >= get_viewport_rect().size.x or  position.x <= 0) and ready_to_delete:
+		if global.bonus_round[0] and line != null:
 			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
 			line.queue_free()
 		if get_meta("type") == "food":
@@ -70,7 +81,7 @@ func _process(delta: float) -> void:
 						var obj = randi_range(0,len(conveyer["objects"])-1)
 						if conveyer["objects"][obj].get_meta("type") == "food":
 							lose_food()
-						if global.bonus_round_1:
+						if global.bonus_round[0]:
 							conveyer["objects"][obj].get_meta("line").queue_free()
 							conveyer["objects"][obj].get_meta("brother_if_tied").get_meta("line").queue_free()
 							conveyer["objects"][obj].get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
@@ -82,15 +93,35 @@ func _process(delta: float) -> void:
 				break
 		queue_free()
 		return
+	print(dragging)
 	if dragging and timeout_debounce:
 		position = get_global_mouse_position() - offset
-		position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
+		print(dir)
+		if global.bonus_round[1]:
+			if dir == "left":
+				position = Vector2(clamp(position.x,limit,get_viewport_rect().size.x-20),clamp(position.y,0,get_viewport_rect().size.y))
+			else:
+				position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
+		else:
+			position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
 		
 func _on_button_button_down() -> void:
+	if global.bonus_round[1]:
+		for i in global.conveyers.values():
+			if i["objects"].has(self):
+				print("FOUND")
+				if i["speed"] < 0:
+					dir = "left"
+					limit = get_global_mouse_position().x - 5
+				else:
+					limit = get_global_mouse_position().x + 5
+					dir = "right"
+				break
+	else:
+		limit = get_global_mouse_position().x + 5
 	$Button.mouse_filter = Control.MOUSE_FILTER_PASS
 	click_timer.start()
 	dragging = true
-	limit = get_global_mouse_position().x +5
 	offset = get_global_mouse_position() - global_position
 
 
@@ -156,7 +187,7 @@ func move_to_conveyer():
 		for conveyer in global.conveyers.values():
 			if conveyer["objects"].has(self):
 				conveyer["objects"].erase(self)
-				if global.bonus_round_1  and not (get_meta("brother_if_tied") is NodePath):
+				if global.bonus_round[0]  and not (get_meta("brother_if_tied") is NodePath):
 					get_meta("brother_if_tied").queue_free()
 				break
 		queue_free()
