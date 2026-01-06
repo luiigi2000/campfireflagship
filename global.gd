@@ -33,7 +33,7 @@ func _ready() -> void:
 
 func reset():
 	round = 1
-	bonus_round = [round%3==0,round%4==0]
+	bonus_round = [false,false]
 	SpawnTime = 10
 	Points = 0
 	Goal = 100
@@ -54,15 +54,18 @@ func reset():
 	conveyers = {
 		"conveyer1":{
 			"objects":[],
-			"speed": 50.0
+			"speed": 50.0,
+			"direction": 1
 		},
 		"conveyer2":{
 			"objects":[],
-			"speed": 50.0
+			"speed": 50.0,
+			"direction": 1
 		},
 		"conveyer3":{
 			"objects":[],
-			"speed": 50.0
+			"speed": 50.0,
+			"direction": 1
 		}
 	}
 	

@@ -25,7 +25,7 @@ func _ready() -> void:
 				break
 	timer.start()
 	##this makes sure it wont delete right after spawn on the the right for bonus round2
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(1.5).timeout
 	ready_to_delete = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,13 +39,7 @@ func _process(delta: float) -> void:
 		line.points = [global_position,get_meta("brother_if_tied").global_position]
 	if global.ice_debounce:
 		for i in global.conveyers.keys():
-			if global.bonus_round[1]:
-				if global.conveyers[i]["speed"] < 0:
-					global.conveyers[i]["speed"] =  -global.base_speed - (10 * len(global.conveyers[i]["objects"]))
-				else:
-					global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
-			else:
-				global.conveyers[i]["speed"] =  global.base_speed + (10 * len(global.conveyers[i]["objects"]))
+			global.conveyers[i]["speed"] =  global.base_speed * global.conveyers[i]["direction"] + (10 * len(global.conveyers[i]["objects"]) * global.conveyers[i]["direction"])
 	position.x += speed * delta
 	if (position.x >= get_viewport_rect().size.x or  position.x <= 0) and ready_to_delete:
 		if global.bonus_round[0] and line != null:
@@ -93,10 +87,8 @@ func _process(delta: float) -> void:
 				break
 		queue_free()
 		return
-	print(dragging)
 	if dragging and timeout_debounce:
 		position = get_global_mouse_position() - offset
-		print(dir)
 		if global.bonus_round[1]:
 			if dir == "left":
 				position = Vector2(clamp(position.x,limit,get_viewport_rect().size.x-20),clamp(position.y,0,get_viewport_rect().size.y))
@@ -109,8 +101,7 @@ func _on_button_button_down() -> void:
 	if global.bonus_round[1]:
 		for i in global.conveyers.values():
 			if i["objects"].has(self):
-				print("FOUND")
-				if i["speed"] < 0:
+				if i["direction"] == -1:
 					dir = "left"
 					limit = get_global_mouse_position().x - 5
 				else:

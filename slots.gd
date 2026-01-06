@@ -41,7 +41,6 @@ func choose_powerup(chosen):
 		global.base_speed += 10
 		for food in global.food_data.values():
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
-				print(food["name"])
 				food["points"] += 1
 	elif chosen == "power2":
 		global.powerup2_debounce = true

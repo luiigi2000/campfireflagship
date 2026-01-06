@@ -9,8 +9,14 @@ var conveyers_effected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if global.bonus_round[1]:
-		stagger_conveyers()
+	#var i = randi_range(0,len(global.bonus_round)-1)
+	var i = 1
+	if global.round%1==0:
+		global.bonus_round[i] = true
+	else:
+		for v in global.bonus_round:
+			v = true
+	stagger_conveyers()
 	global.trash_stored = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()
@@ -137,7 +143,7 @@ func conveyer_multiply():
 	conveyers_effected = 0
 	var effected = []
 	for conveyer in global.conveyers:
-		var names = ["nigiri", "tobiko", "californiaroll"]	
+		var names = ["nigiri", "tobiko", "californiaroll"]
 		var dupes = {
 			"nigiri": 0,
 			"tobiko": 0,
@@ -190,12 +196,5 @@ func stagger_conveyers():
 	for i in range(3):
 		var count = randi_range(1,2)
 		if count == 1:
-			spawners.get_child(i).position.x = -(position.x) + get_viewport_rect().size.x
-			var conv
-			if i == 0:
-				conv = "conveyer1"
-			elif i == 1:
-				conv = "conveyer2"
-			else:
-				conv = "conveyer3"
-			global.conveyers[conv]["speed"] =- global.conveyers[conv]["speed"]
+			$Spawners.get_child(i).position.x = -$Spawners.get_child(i).position.x + get_viewport_rect().size.x
+			global.conveyers[global.conveyers.keys()[i]]["direction"] = -1
