@@ -9,14 +9,13 @@ var conveyers_effected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#var i = randi_range(0,len(global.bonus_round)-1)
-	var i = 1
-	if global.round%1==0:
-		global.bonus_round[i] = true
+	if global.round%2==0:
+		global.bonus_round[randi_range(0,len(global.bonus_round)-1)] = true
 	else:
 		for v in global.bonus_round:
 			v = true
-	stagger_conveyers()
+	if global.bonus_round[1]:
+		stagger_conveyers()
 	global.trash_stored = 0
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	timer.start()

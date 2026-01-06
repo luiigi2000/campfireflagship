@@ -41,7 +41,7 @@ func _process(delta: float) -> void:
 		for i in global.conveyers.keys():
 			global.conveyers[i]["speed"] =  global.base_speed * global.conveyers[i]["direction"] + (10 * len(global.conveyers[i]["objects"]) * global.conveyers[i]["direction"])
 	position.x += speed * delta
-	if (position.x >= get_viewport_rect().size.x or  position.x <= 0) and ready_to_delete:
+	if (position.x >= get_viewport_rect().size.x or position.x <= 0) and ready_to_delete:
 		if global.bonus_round[0] and line != null:
 			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
 			line.queue_free()

@@ -4,8 +4,8 @@ extends Node
 var round 
 var bonus_round  #change this into an if elif else statement and a variable called bonus_round so i can detect which one it is 
 var SpawnTime
-var Points 
-var Goal 
+var Points: int
+var Goal
 var ice_debounce
 var base_speed 
 var powerup2_debounce 
@@ -97,7 +97,7 @@ func reset():
 		"bomb":{
 			"points": 0,
 			"speed": 50,
-			"image": load("res://images/Sushi/bomb.webp"),
+			"image": load("res://images/Sushi/rat.png"),
 			"name":"bomb"
 		}
 	}
