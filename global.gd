@@ -91,7 +91,7 @@ func reset():
 		"ice":{
 			"points": 0,
 			"speed": 50,
-			"image": load("res://images/Sushi/images (1).jpg"),
+			"image": load("res://images/Sushi/ice.png"),
 			"name": "ice"
 		},
 		"bomb":{

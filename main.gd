@@ -9,7 +9,7 @@ var conveyers_effected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if global.round%2==0:
+	if global.round%3==0:
 		global.bonus_round[randi_range(0,len(global.bonus_round)-1)] = true
 	else:
 		for v in global.bonus_round:
@@ -197,3 +197,22 @@ func stagger_conveyers():
 		if count == 1:
 			$Spawners.get_child(i).position.x = -$Spawners.get_child(i).position.x + get_viewport_rect().size.x
 			global.conveyers[global.conveyers.keys()[i]]["direction"] = -1
+
+
+
+
+
+func _on_conveyer_1_collision_mouse_exited() -> void:
+	global.mouse_location = 0
+
+
+func _on_conveyer_2_collision_mouse_exited() -> void:
+	global.mouse_location = 0
+
+
+func _on_trash_can_collision_mouse_exited() -> void:
+	global.mouse_location = 0
+
+
+func _on_conveyer_3_collision_mouse_exited() -> void:
+	global.mouse_location = 0

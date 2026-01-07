@@ -13,6 +13,7 @@ var time_freeze := 2.5
 var line := Line2D.new()
 var ready_to_delete := false
 var dir
+var fell_debounce := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	line.top_level = true
@@ -40,7 +41,8 @@ func _process(delta: float) -> void:
 	if global.ice_debounce:
 		for i in global.conveyers.keys():
 			global.conveyers[i]["speed"] =  global.base_speed * global.conveyers[i]["direction"] + (10 * len(global.conveyers[i]["objects"]) * global.conveyers[i]["direction"])
-	position.x += speed * delta
+	if not fell_debounce:
+		position.x += speed * delta
 	if (position.x >= get_viewport_rect().size.x or position.x <= 0) and ready_to_delete:
 		if global.bonus_round[0] and line != null:
 			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
@@ -56,7 +58,8 @@ func _process(delta: float) -> void:
 				if conveyer["objects"].has(self):
 					chosen_conveyer = conveyer
 					for object in conveyer["objects"]:
-						object.modulate = Color(0,1,1)
+						if object != null:
+							object.modulate = Color(0,1,1)
 					conveyer["speed"] = 0
 					break
 			visible = false
@@ -73,6 +76,10 @@ func _process(delta: float) -> void:
 						if conveyer["objects"].is_empty():
 							break
 						var obj = randi_range(0,len(conveyer["objects"])-1)
+						if not is_instance_valid(conveyer["objects"][obj]):
+							conveyer["objects"].remove_at(obj)
+							i-=1
+							continue
 						if conveyer["objects"][obj].get_meta("type") == "food":
 							lose_food()
 						if global.bonus_round[0]:
@@ -112,7 +119,8 @@ func _on_button_button_down() -> void:
 		limit = get_global_mouse_position().x + 5
 	$Button.mouse_filter = Control.MOUSE_FILTER_PASS
 	click_timer.start()
-	dragging = true
+	if not fell_debounce:
+		dragging = true
 	offset = get_global_mouse_position() - global_position
 
 
@@ -125,7 +133,7 @@ func _on_button_button_up() -> void:
 	limit = 1000000
 
 func _on_points_timer_timeout() -> void:
-	if dragging == false:
+	if dragging == false and not fell_debounce:
 		for food in global.food_data.values():
 			if food["name"] == get_meta("name"):
 				global.Points += food["points"]
@@ -167,21 +175,32 @@ func lose_food():
 	global.leaderboard_stats[0] += 1
 	
 func move_to_conveyer():
-	if global.mouse_location == 1:
-		move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,180.0)
-	elif global.mouse_location == 2:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,323.0)
-	elif global.mouse_location == 3:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,470.0)
-	elif global.mouse_location == 4 and global.trash_stored < global.trash_storage:
-		global.trash_stored += 1
-		for conveyer in global.conveyers.values():
-			if conveyer["objects"].has(self):
-				conveyer["objects"].erase(self)
-				if global.bonus_round[0]  and not (get_meta("brother_if_tied") is NodePath):
-					get_meta("brother_if_tied").queue_free()
-				break
-		queue_free()
-	elif global.mouse_location == 4:
-		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,575)
+	if not fell_debounce:
+		if global.mouse_location == 1:
+			move_conveyer(global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer1"]["objects"],1,180.0)
+		elif global.mouse_location == 2:
+			move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer3"]["objects"],global.conveyers["conveyer2"]["objects"],2,323.0)
+		elif global.mouse_location == 3:
+			move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,470.0)
+		elif global.mouse_location == 4 and global.trash_stored < global.trash_storage:
+			global.trash_stored += 1
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].has(self):
+					conveyer["objects"].erase(self)
+					if global.bonus_round[0]  and not (get_meta("brother_if_tied") is NodePath):
+						get_meta("brother_if_tied").queue_free()
+					break
+			queue_free()
+		else:
+			fell_debounce = true
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].has(self):
+					conveyer["objects"].erase(self)
+					break
+			modulate = Color.GREEN
+			lose_food()
+			await get_tree().create_timer(1.5).timeout
+			queue_free()
+		
+		
 	

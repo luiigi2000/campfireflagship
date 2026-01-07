@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=14 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
@@ -7,14 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://b0h1wao83uasa" path="res://images/perfectround.png" id="3_h2yge"]
 [ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/Background/trashcan.png" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://b7lqmytil1g65" path="res://Audio/Background_Music.mp3" id="8_5vw27"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(506.6667, 596.7051)
+size = Vector2(503.4183, 240.64728)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
-size = Vector2(507.6455, 432.5016)
+size = Vector2(507.6455, 322.8532)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
+size = Vector2(1.0026088, 1.4444447)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
+size = Vector2(21.01816, 23.510689)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
@@ -50,7 +57,7 @@ position = Vector2(0.022608671, 0.06666665)
 scale = Vector2(0.0019967835, 0.005886901)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer1/Conveyer1Collision"]
-position = Vector2(-9.145142, -135.28445)
+position = Vector2(-10.451584, -8.965332)
 scale = Vector2(1, 0.99999976)
 shape = SubResource("RectangleShape2D_lquwl")
 
@@ -65,7 +72,7 @@ position = Vector2(0.026956508, -0.2799998)
 scale = Vector2(0.0019767303, -0.0045600357)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer2/Conveyer2Collision"]
-position = Vector2(-13.636917, -64.44873)
+position = Vector2(-13.636917, -61.402954)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Conveyer3" type="MeshInstance2D" parent="Background"]
@@ -76,9 +83,9 @@ texture = ExtResource("2_1bvp3")
 
 [node name="Conveyer3Collision" type="Area2D" parent="Background/Conveyer3"]
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Background/Conveyer3/Conveyer3Collision"]
-position = Vector2(-0.5008696, 0.11111134)
-polygon = PackedVector2Array(0, -1.0972228, 1.0034783, -1.0972228, 1.0026087, 2.3888884, 0.066086955, 2.3866668, 0.066086955, 1.3200002, 0, 1.3200002)
+[node name="Collision" type="CollisionShape2D" parent="Background/Conveyer3/Conveyer3Collision"]
+position = Vector2(0.0004348755, 0)
+shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="Label" type="Label" parent="Background"]
 self_modulate = Color(0, 0, 0, 1)
@@ -143,8 +150,9 @@ texture = ExtResource("5_lquwl")
 [node name="TrashCanCollision" type="Area2D" parent="Trashcan"]
 
 [node name="Collision" type="CollisionShape2D" parent="Trashcan/TrashCanCollision"]
-position = Vector2(-13.3333435, -23.333252)
-shape = SubResource("RectangleShape2D_lquwl")
+position = Vector2(29.99997, -43.307617)
+scale = Vector2(28.863932, 24.671814)
+shape = SubResource("RectangleShape2D_kek77")
 
 [node name="TrashLabel" type="Label" parent="Trashcan"]
 offset_left = 20.0
@@ -159,9 +167,19 @@ text = "1"
 [node name="ConveyerMultiplier" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="Background_Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5vw27")
+volume_db = -15.0
+autoplay = true
+parameters/looping = true
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Background/Conveyer3/Conveyer3Collision" to="." method="_on_conveyer_3_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Conveyer3/Conveyer3Collision" to="." method="_on_conveyer_3_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Trashcan/TrashCanCollision" to="." method="_on_trash_can_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Trashcan/TrashCanCollision" to="." method="_on_trash_can_collision_mouse_exited"]
 [connection signal="timeout" from="ConveyerMultiplier" to="." method="_on_conveyer_multiplier_timeout"]

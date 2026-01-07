@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ox57iq43c3gj"
-path="res://.godot/imported/bomb.webp-ea04a2c8e43760641e5c971654b728d6.ctex"
+uid="uid://cdh6bm030c2ts"
+path="res://.godot/imported/ice.png-77e83b8cbf7e78a0ce1d8125e4dd8b2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/Sushi/bomb.webp"
-dest_files=["res://.godot/imported/bomb.webp-ea04a2c8e43760641e5c971654b728d6.ctex"]
+source_file="res://images/Sushi/ice.png"
+dest_files=["res://.godot/imported/ice.png-77e83b8cbf7e78a0ce1d8125e4dd8b2f.ctex"]
 
 [params]
 
