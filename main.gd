@@ -9,6 +9,7 @@ var conveyers_effected = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	set_level_display()
 	if global.round%3==0:
 		global.bonus_round[randi_range(0,len(global.bonus_round)-1)] = true
 	else:
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 		end_round()
 			
 	timer.wait_time = global.SpawnTime
-	$Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
+	$LevelDisplay/Label.text = str(global.Points) + " / " + str(global.Goal) + " calories"
 	
 	if Input.is_action_just_pressed("accessmenu"):
 		if $menu.visible == false:
@@ -42,7 +43,7 @@ func _process(delta: float) -> void:
 	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
-	$FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
+	$LevelDisplay/FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
 	$Trashcan/TrashLabel.text = str(global.trash_storage - global.trash_stored)
 	
 	if global.food_lost >= global.lost_limit:
@@ -216,3 +217,13 @@ func _on_trash_can_collision_mouse_exited() -> void:
 
 func _on_conveyer_3_collision_mouse_exited() -> void:
 	global.mouse_location = 0
+
+func set_level_display():
+	var next_round = global.round + 1
+	var display_images = $LevelDisplay/Background/DisplayImages
+	for i in range(display_images.get_child_count()):
+		if not (next_round%3 == 0):
+			display_images.get_child(i).texture = load("res://images/DisplayImages/regstar.png")
+		else:
+			display_images.get_child(i).texture = load("res://images/DisplayImages/star.jpg")
+		next_round+=1

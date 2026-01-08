@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=17 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/Background/trashcan.png" id="5_lquwl"]
 [ext_resource type="AudioStream" uid="uid://b7lqmytil1g65" path="res://Audio/Background_Music.mp3" id="8_5vw27"]
+[ext_resource type="Texture2D" uid="uid://cafxvy4gsmlfn" path="res://images/DisplayImages/star.jpg" id="9_kek77"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
@@ -22,6 +23,8 @@ size = Vector2(1.142366, 1.5416667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(21.01816, 23.510689)
+
+[sub_resource type="QuadMesh" id="QuadMesh_kek77"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_5vw27"]
 
@@ -118,23 +121,6 @@ offset_bottom = 500.0
 theme_override_fonts/font = ExtResource("4_272bh")
 text = "100"
 
-[node name="Label" type="Label" parent="."]
-offset_left = 989.0
-offset_top = 10.0
-offset_right = 1152.0
-offset_bottom = 48.0
-theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
-theme_override_fonts/font = ExtResource("4_272bh")
-
-[node name="FoodLost" type="Label" parent="."]
-offset_left = 13.0
-offset_top = 4.0
-offset_right = 176.0
-offset_bottom = 42.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_fonts/font = ExtResource("4_272bh")
-text = "0/100"
-
 [node name="menu" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(572, 316)
@@ -177,11 +163,61 @@ volume_db = -15.0
 autoplay = true
 parameters/looping = true
 
-[node name="LevelDisplay" type="MeshInstance2D" parent="."]
-self_modulate = Color(0.22670749, 0.22670749, 0.22670746, 1)
-position = Vector2(1008.00006, 35)
-scale = Vector2(262.60263, 48.317226)
+[node name="LevelDisplay" type="Node2D" parent="."]
+position = Vector2(992, 36)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="LevelDisplay"]
+modulate = Color(0.9882353, 0.9137255, 0.85490197, 1)
+position = Vector2(-414, -13)
+scale = Vector2(1160, 100)
+mesh = SubResource("QuadMesh_kek77")
+
+[node name="Background" type="MeshInstance2D" parent="LevelDisplay"]
+position = Vector2(-166.2568, -1.7706183)
+scale = Vector2(-305.48627, 46.458763)
 mesh = SubResource("QuadMesh_5vw27")
+
+[node name="DisplayImages" type="Node2D" parent="LevelDisplay/Background"]
+position = Vector2(-0.42955256, 0.027011573)
+rotation = 3.1415927
+scale = Vector2(1.6367349e-05, -0.00010762232)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
+position = Vector2(-49844.484, -450.985)
+scale = Vector2(30, 30)
+texture = ExtResource("9_kek77")
+
+[node name="Sprite2D2" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
+position = Vector2(-34844.484, -250.98497)
+scale = Vector2(30, 30)
+texture = ExtResource("9_kek77")
+
+[node name="Sprite2D3" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
+position = Vector2(-20044.484, -250.98497)
+scale = Vector2(30, 30)
+texture = ExtResource("9_kek77")
+
+[node name="Sprite2D4" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
+position = Vector2(-4044.483, -250.98497)
+scale = Vector2(30, 30)
+texture = ExtResource("9_kek77")
+
+[node name="Label" type="Label" parent="LevelDisplay"]
+offset_left = -4.0000076
+offset_top = -17.0
+offset_right = 159.0
+offset_bottom = 21.0
+theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
+theme_override_fonts/font = ExtResource("4_272bh")
+
+[node name="FoodLost" type="Label" parent="LevelDisplay"]
+offset_left = -983.0
+offset_top = -15.0
+offset_right = -820.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_272bh")
+text = "0/100"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
