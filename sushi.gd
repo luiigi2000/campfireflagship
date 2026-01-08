@@ -136,6 +136,7 @@ func _on_points_timer_timeout() -> void:
 	if dragging == false and not fell_debounce:
 		for food in global.food_data.values():
 			if food["name"] == get_meta("name"):
+				print(food["name"]+" "+get_meta("name"))
 				global.Points += food["points"]
 				break
 		if get_meta("type") == "food" and global.powerup2_debounce:

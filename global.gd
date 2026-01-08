@@ -76,11 +76,11 @@ func reset():
 			"image": load("res://images/Sushi/nigiri.png"),
 			"name":"nigiri"
 		},
-		"tobiko":{
+		"tempura":{
 			"points": 3,
 			"speed": 50,
-			"image": load("res://images/Sushi/tobiko-roll-1200.jpg"),
-			"name":"tobiko"
+			"image": load("res://images/Sushi/tempura.png"),
+			"name":"tempura"
 		},
 		"californiaroll":{
 			"points": 1,

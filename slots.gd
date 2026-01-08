@@ -52,8 +52,6 @@ func choose_powerup(chosen):
 			if food["name"]  != "ice"  and  food["name"] != "bomb":  #add type: food
 				food["points"] *= 1.3
 				food["points"] = roundi(food["points"])
-	elif chosen == "power5":
-		global.powerup5_debounce = true
 	elif chosen == "power6":
 		global.trash_storage += 1
 	elif chosen == "power7":
@@ -105,10 +103,6 @@ func reset_powerups():
 		"power4": {
 			"img": load("res://images/Slots/caseoh.jpg"),
 			"text": "Slower metabolism: 3% gain for calories"
-		},
-		"power5": {
-			"img": load("res://images/Slots/icon.jpg"),
-			"text": "Every time you lose a californiaroll, your food lost capacity raises by 2 (does not stack)"
 		},
 		"power6": {
 			"img": load("res://images/Slots/racoon.jpg"),

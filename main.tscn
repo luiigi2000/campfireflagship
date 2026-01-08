@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=15 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
@@ -12,16 +12,18 @@
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(503.4183, 240.64728)
+size = Vector2(517.78925, 276.03662)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
-size = Vector2(507.6455, 322.8532)
+size = Vector2(525.984, 341.12787)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(1.0026088, 1.4444447)
+size = Vector2(1.142366, 1.5416667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(21.01816, 23.510689)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5vw27"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_ig7tw")
@@ -47,7 +49,7 @@ wait_time = 2.0
 [node name="Background" type="Node2D" parent="."]
 
 [node name="Conveyer1" type="MeshInstance2D" parent="Background"]
-position = Vector2(575, 180)
+position = Vector2(576, 180)
 scale = Vector2(1150, 72)
 mesh = SubResource("QuadMesh_ig7tw")
 texture = ExtResource("2_1bvp3")
@@ -57,8 +59,8 @@ position = Vector2(0.022608671, 0.06666665)
 scale = Vector2(0.0019967835, 0.005886901)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer1/Conveyer1Collision"]
-position = Vector2(-10.451584, -8.965332)
-scale = Vector2(1, 0.99999976)
+position = Vector2(-11.104813, -10.144989)
+scale = Vector2(1.1045345, 0.99999976)
 shape = SubResource("RectangleShape2D_lquwl")
 
 [node name="Conveyer2" type="MeshInstance2D" parent="Background"]
@@ -72,7 +74,8 @@ position = Vector2(0.026956508, -0.2799998)
 scale = Vector2(0.0019767303, -0.0045600357)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer2/Conveyer2Collision"]
-position = Vector2(-13.636917, -61.402954)
+position = Vector2(-14.533554, -61.402954)
+scale = Vector2(1.1055757, 1)
 shape = SubResource("RectangleShape2D_7mycd")
 
 [node name="Conveyer3" type="MeshInstance2D" parent="Background"]
@@ -84,7 +87,8 @@ texture = ExtResource("2_1bvp3")
 [node name="Conveyer3Collision" type="Area2D" parent="Background/Conveyer3"]
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer3/Conveyer3Collision"]
-position = Vector2(0.0004348755, 0)
+position = Vector2(-0.00086951256, 0.0069446564)
+scale = Vector2(1.0002124, 1)
 shape = SubResource("RectangleShape2D_5vw27")
 
 [node name="Label" type="Label" parent="Background"]
@@ -172,6 +176,12 @@ stream = ExtResource("8_5vw27")
 volume_db = -15.0
 autoplay = true
 parameters/looping = true
+
+[node name="LevelDisplay" type="MeshInstance2D" parent="."]
+self_modulate = Color(0.22670749, 0.22670749, 0.22670746, 1)
+position = Vector2(1008.00006, 35)
+scale = Vector2(262.60263, 48.317226)
+mesh = SubResource("QuadMesh_5vw27")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]

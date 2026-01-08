@@ -72,10 +72,10 @@ func spawn():
 		instance.set_meta("type", "food")
 		instance.set_meta("name","nigiri")
 	elif image <= 60:
-		instance.texture = global.food_data["tobiko"]["image"]
-		instance.scale = Vector2(.05,.05)
+		instance.texture = global.food_data["tempura"]["image"]
+		instance.scale = Vector2(.4,.4)
 		instance.set_meta("type", "food")
-		instance.set_meta("name","tobiko")
+		instance.set_meta("name","tempura")
 	elif image <= 80:
 		instance.texture = global.food_data["ice"]["image"]
 		instance.set_meta("name","ice")
@@ -142,10 +142,10 @@ func conveyer_multiply():
 	conveyers_effected = 0
 	var effected = []
 	for conveyer in global.conveyers:
-		var names = ["nigiri", "tobiko", "californiaroll"]
+		var names = ["nigiri", "tempura", "californiaroll"]
 		var dupes = {
 			"nigiri": 0,
-			"tobiko": 0,
+			"tempura": 0,
 			"californiaroll": 0
 		}
 		for i in global.conveyers[conveyer]["objects"]:
