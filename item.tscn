@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgiaw6fuwyb8j"]
+
+[ext_resource type="Script" uid="uid://b3k5fii32ouv3" path="res://item.gd" id="1_tnite"]
+
+[node name="Item" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_tnite")
+metadata/item = 0

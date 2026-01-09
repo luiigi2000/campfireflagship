@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb2fhlxreo8av"]
+
+[ext_resource type="Script" uid="uid://d1jgqtmchaffh" path="res://shop.gd" id="1_viryw"]
+
+[node name="shop" type="Node2D"]
+script = ExtResource("1_viryw")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Button" type="Button" parent="Buttons"]
+offset_left = 34.0
+offset_top = 280.0
+offset_right = 42.0
+offset_bottom = 288.0
+
+[node name="Button2" type="Button" parent="Buttons"]
+offset_left = 397.0
+offset_top = 285.0
+offset_right = 405.0
+offset_bottom = 293.0
+
+[node name="Button3" type="Button" parent="Buttons"]
+offset_left = 818.0
+offset_top = 298.0
+offset_right = 826.0
+offset_bottom = 306.0
+
+[connection signal="pressed" from="Buttons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Buttons/Button3" to="." method="_on_button_3_pressed"]

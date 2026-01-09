@@ -5,10 +5,12 @@ extends Node2D
 @onready var spawners := $Spawners
 var round_done := false
 var conveyers_effected = 0
+var perfect_round = false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	load_invetory()
 	set_level_display()
 	if global.round%3==0:
 		global.bonus_round[randi_range(0,len(global.bonus_round)-1)] = true
@@ -48,6 +50,7 @@ func _process(delta: float) -> void:
 	
 	if global.food_lost >= global.lost_limit:
 		global.leaderboard_stats[4] += global.Points
+		global.cash += 100
 		get_tree().change_scene_to_file("res://end_screen.tscn")
 
 
@@ -184,7 +187,8 @@ func end_round():
 			if object != null:
 				object.queue_free()
 		conveyer["objects"].clear()
-	if global.perfect_round == true:
+	if perfect_round == true:
+		perfect_round = false
 		global.leaderboard_stats[2] += 1
 		global.total_score += global.Goal
 		$PerfectRound.visible = true
@@ -199,25 +203,6 @@ func stagger_conveyers():
 			$Spawners.get_child(i).position.x = -$Spawners.get_child(i).position.x + get_viewport_rect().size.x
 			global.conveyers[global.conveyers.keys()[i]]["direction"] = -1
 
-
-
-
-
-func _on_conveyer_1_collision_mouse_exited() -> void:
-	global.mouse_location = 0
-
-
-func _on_conveyer_2_collision_mouse_exited() -> void:
-	global.mouse_location = 0
-
-
-func _on_trash_can_collision_mouse_exited() -> void:
-	global.mouse_location = 0
-
-
-func _on_conveyer_3_collision_mouse_exited() -> void:
-	global.mouse_location = 0
-
 func set_level_display():
 	var next_round = global.round + 1
 	var display_images = $LevelDisplay/Background/DisplayImages
@@ -227,3 +212,7 @@ func set_level_display():
 		else:
 			display_images.get_child(i).texture = load("res://images/DisplayImages/star.jpg")
 		next_round+=1
+		
+func load_invetory():
+	for i in global.items:
+		$CanvasLayer/HBoxContainer.add_child(i)

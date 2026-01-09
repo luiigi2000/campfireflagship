@@ -10,10 +10,9 @@ var ice_debounce
 var base_speed 
 var powerup2_debounce 
 var powerup2_amnt 
-var spin_amnt 
-var perfect_round 
-var food_lost 
-var lost_limit 
+var spin_amnt  
+var food_lost: int
+var lost_limit: int
 var powerup5_debounce 
 var leaderboard_stats 
 var total_score 
@@ -22,6 +21,8 @@ var mouse_location: int
 var trash_storage
 var trash_stored
 var conveyer_additives 
+var cash
+var items
 
 
 var conveyers = {}
@@ -42,7 +43,6 @@ func reset():
 	powerup2_debounce = false
 	powerup2_amnt = 10
 	spin_amnt = 1
-	perfect_round = true
 	food_lost = 0
 	lost_limit = 25
 	powerup5_debounce = false
@@ -50,6 +50,8 @@ func reset():
 	total_score = 0
 	trash_storage = 1
 	conveyer_additives = 1
+	cash = 0
+	items = []
 	
 	conveyers = {
 		"conveyer1":{

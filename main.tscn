@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7oco1xvn0dd"]
+[gd_scene load_steps=16 format=3 uid="uid://7oco1xvn0dd"]
 
 [ext_resource type="Script" uid="uid://cvdjoc6745m2t" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://el16ou7226p7" path="res://images/menu.png" id="2_0xm2m"]
@@ -8,18 +8,17 @@
 [ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="4_272bh"]
 [ext_resource type="Texture2D" uid="uid://ch5rjcsty2icm" path="res://images/Background/trashcan.png" id="5_lquwl"]
 [ext_resource type="AudioStream" uid="uid://b7lqmytil1g65" path="res://Audio/Background_Music.mp3" id="8_5vw27"]
-[ext_resource type="Texture2D" uid="uid://cafxvy4gsmlfn" path="res://images/DisplayImages/star.jpg" id="9_kek77"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ig7tw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lquwl"]
-size = Vector2(517.78925, 276.03662)
+size = Vector2(517.78925, 844.6249)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7mycd"]
-size = Vector2(525.984, 341.12787)
+size = Vector2(525.984, 462.95932)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5vw27"]
-size = Vector2(1.142366, 1.5416667)
+size = Vector2(1.142366, 2.5000007)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kek77"]
 size = Vector2(21.01816, 23.510689)
@@ -62,7 +61,7 @@ position = Vector2(0.022608671, 0.06666665)
 scale = Vector2(0.0019967835, 0.005886901)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer1/Conveyer1Collision"]
-position = Vector2(-11.104813, -10.144989)
+position = Vector2(-11.104813, -256.69043)
 scale = Vector2(1.1045345, 0.99999976)
 shape = SubResource("RectangleShape2D_lquwl")
 
@@ -77,7 +76,7 @@ position = Vector2(0.026956508, -0.2799998)
 scale = Vector2(0.0019767303, -0.0045600357)
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer2/Conveyer2Collision"]
-position = Vector2(-14.533554, -61.402954)
+position = Vector2(-14.533554, -58.357178)
 scale = Vector2(1.1055757, 1)
 shape = SubResource("RectangleShape2D_7mycd")
 
@@ -90,7 +89,7 @@ texture = ExtResource("2_1bvp3")
 [node name="Conveyer3Collision" type="Area2D" parent="Background/Conveyer3"]
 
 [node name="Collision" type="CollisionShape2D" parent="Background/Conveyer3/Conveyer3Collision"]
-position = Vector2(-0.00086951256, 0.0069446564)
+position = Vector2(-0.00086951256, 0.26388884)
 scale = Vector2(1.0002124, 1)
 shape = SubResource("RectangleShape2D_5vw27")
 
@@ -167,7 +166,7 @@ parameters/looping = true
 position = Vector2(992, 36)
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="LevelDisplay"]
-modulate = Color(0.9882353, 0.9137255, 0.85490197, 1)
+modulate = Color(0.9875471, 0.90879834, 0.99999994, 1)
 position = Vector2(-414, -13)
 scale = Vector2(1160, 100)
 mesh = SubResource("QuadMesh_kek77")
@@ -185,47 +184,56 @@ scale = Vector2(1.6367349e-05, -0.00010762232)
 [node name="Sprite2D" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
 position = Vector2(-49844.484, -450.985)
 scale = Vector2(30, 30)
-texture = ExtResource("9_kek77")
 
 [node name="Sprite2D2" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
 position = Vector2(-34844.484, -250.98497)
 scale = Vector2(30, 30)
-texture = ExtResource("9_kek77")
 
 [node name="Sprite2D3" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
 position = Vector2(-20044.484, -250.98497)
 scale = Vector2(30, 30)
-texture = ExtResource("9_kek77")
 
 [node name="Sprite2D4" type="Sprite2D" parent="LevelDisplay/Background/DisplayImages"]
 position = Vector2(-4044.483, -250.98497)
 scale = Vector2(30, 30)
-texture = ExtResource("9_kek77")
 
 [node name="Label" type="Label" parent="LevelDisplay"]
-offset_left = -4.0000076
-offset_top = -17.0
-offset_right = 159.0
-offset_bottom = 21.0
+offset_left = 9.999992
+offset_top = -11.0
+offset_right = 173.0
+offset_bottom = 27.0
 theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
 theme_override_fonts/font = ExtResource("4_272bh")
 
 [node name="FoodLost" type="Label" parent="LevelDisplay"]
-offset_left = -983.0
-offset_top = -15.0
-offset_right = -820.0
-offset_bottom = 23.0
+offset_left = -972.0
+offset_top = -9.0
+offset_right = -809.0
+offset_bottom = 29.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_272bh")
 text = "0/100"
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1008.0
+offset_top = -67.0
+offset_right = -508.0
+offset_bottom = 261.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.233, 0.2)
+
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
 [connection signal="mouse_entered" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_entered"]
-[connection signal="mouse_exited" from="Background/Conveyer1/Conveyer1Collision" to="." method="_on_conveyer_1_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_entered"]
-[connection signal="mouse_exited" from="Background/Conveyer2/Conveyer2Collision" to="." method="_on_conveyer_2_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Background/Conveyer3/Conveyer3Collision" to="." method="_on_conveyer_3_collision_mouse_entered"]
-[connection signal="mouse_exited" from="Background/Conveyer3/Conveyer3Collision" to="." method="_on_conveyer_3_collision_mouse_exited"]
 [connection signal="mouse_entered" from="Trashcan/TrashCanCollision" to="." method="_on_trash_can_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Trashcan/TrashCanCollision" to="." method="_on_trash_can_collision_mouse_exited"]
 [connection signal="timeout" from="ConveyerMultiplier" to="." method="_on_conveyer_multiplier_timeout"]

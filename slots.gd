@@ -15,9 +15,6 @@ func _ready() -> void:
 	$ButtonScale/Button.text = str(original_count)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_button_pressed() -> void:
 	$ButtonScale/Button.text = str(original_count-1)
@@ -63,11 +60,7 @@ func choose_powerup(chosen):
 	else:
 		await get_tree().create_timer(1).timeout
 		global.Goal += 100
-		if global.perfect_round:
-			global.perfect_round = false
-			global.Points = global.Goal/4
-		else:
-			global.Points = 0
+		global.Points = 0
 		get_tree().change_scene_to_file("res://main.tscn")
 	
 func spin():
