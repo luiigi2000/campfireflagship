@@ -107,6 +107,7 @@ func move_conveyer(conveyer1,conveyer2,conveyerself,conveyernum,ypos):
 	position.y = ypos	
 
 func lose_food():
+	global.food_saved-=1
 	global.perfect_round = false
 	global.food_lost += 1
 	global.leaderboard_stats[0] += 1

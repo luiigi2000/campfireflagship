@@ -62,6 +62,7 @@ func _on_spawn_timer_timeout() -> void:
 	timer.start()
 
 func spawn():
+	global.food_saved+=1
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
 	var image := randi_range(1,100)

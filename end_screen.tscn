@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b81ilmniks18a"]
+[gd_scene load_steps=11 format=3 uid="uid://b81ilmniks18a"]
 
 [ext_resource type="Script" uid="uid://cwsdkvnrg83dk" path="res://end_screen.gd" id="1_my301"]
 [ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="2_abjgy"]
@@ -8,7 +8,19 @@
 [sub_resource type="SphereMesh" id="SphereMesh_abjgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xu7hh"]
-radius = 15.033297
+radius = 10.049875
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_abjgy"]
+size = Vector2(0.5, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xu7hh"]
+size = Vector2(11.034826, 1)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_abjgy"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abjgy"]
+radius = 15.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my301"]
 bg_color = Color(0.6039216, 0.6, 0.6, 1)
@@ -18,28 +30,66 @@ script = ExtResource("1_my301")
 
 [node name="Peggle" type="Node2D" parent="."]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Peggle"]
+[node name="Side1" type="MeshInstance2D" parent="Peggle"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(199.99998, 324)
+position = Vector2(192, 324)
 scale = Vector2(399.99997, 648)
 mesh = SubResource("QuadMesh_abjgy")
 
-[node name="MeshInstance2D2" type="MeshInstance2D" parent="Peggle"]
+[node name="Side2" type="MeshInstance2D" parent="Peggle"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(953, 324)
-scale = Vector2(398.00006, 648)
+position = Vector2(952, 324)
+scale = Vector2(392.63998, 648)
 mesh = SubResource("QuadMesh_abjgy")
 
 [node name="BackGround" type="Node2D" parent="Peggle"]
 
 [node name="Peg" type="StaticBody2D" parent="Peggle"]
+position = Vector2(433, 26)
+metadata/_edit_group_ = true
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Peggle/Peg"]
-scale = Vector2(30, 30)
+scale = Vector2(20, 20)
 mesh = SubResource("SphereMesh_abjgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Peggle/Peg"]
 shape = SubResource("CircleShape2D_xu7hh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Peggle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Peggle/StaticBody2D"]
+position = Vector2(391, 323)
+scale = Vector2(3.8799999, 1)
+shape = SubResource("RectangleShape2D_abjgy")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Peggle/StaticBody2D"]
+position = Vector2(756, 325)
+scale = Vector2(0.96, 1)
+shape = SubResource("RectangleShape2D_abjgy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Peggle/StaticBody2D"]
+position = Vector2(577, -5.9604645e-08)
+scale = Vector2(32.160004, 0.3199997)
+shape = SubResource("RectangleShape2D_xu7hh")
+disabled = true
+one_way_collision = true
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Peggle/StaticBody2D"]
+position = Vector2(570.99994, 648.00006)
+scale = Vector2(32.160004, 0.3199997)
+shape = SubResource("RectangleShape2D_xu7hh")
+
+[node name="Food" type="RigidBody2D" parent="Peggle"]
+position = Vector2(407, 26)
+physics_material_override = SubResource("PhysicsMaterial_abjgy")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Peggle/Food"]
+position = Vector2(-0.99999994, 0)
+scale = Vector2(0.1, 0.1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Peggle/Food"]
+shape = SubResource("CircleShape2D_abjgy")
 
 [node name="Button" type="Button" parent="."]
 offset_left = 48.0
