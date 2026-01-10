@@ -24,7 +24,7 @@ func start_drag():
 	dragging = true
 	
 func end_drag():
-	reparent(parent, true)
+	activate_item()
 	dragging = false
 	
 func _input(event: InputEvent) -> void:
@@ -34,3 +34,15 @@ func _input(event: InputEvent) -> void:
 				call_deferred("start_drag")
 			else:
 				end_drag()
+				
+func activate_item():
+	var mouse_loc = global.mouse_location-1
+	visible = false
+	if get_meta("item") == 2:
+		var direction = global.conveyers.values()[mouse_loc]["direction"]
+		global.conveyers.values()[mouse_loc]["direction"] = direction * .5
+		await get_tree().create_timer(5).timeout
+		global.conveyers.values()[mouse_loc]["direction"] = direction
+	global.items.erase(self)
+	queue_free()
+	

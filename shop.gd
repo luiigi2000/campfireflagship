@@ -2,7 +2,7 @@ extends Node2D
 
 var items = {
 	"item1":{
-		"image": load("res://images/Sushi/nigiri.png"),
+		"image": load("res://images/Sushi/tobiko-roll-1200.jpg"),
 		"text": "idk yet"
 	},
 	"item2":{

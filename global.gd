@@ -23,6 +23,7 @@ var trash_stored
 var conveyer_additives 
 var cash
 var items
+var perfect_round
 
 
 var conveyers = {}
@@ -52,6 +53,7 @@ func reset():
 	conveyer_additives = 1
 	cash = 0
 	items = []
+	perfect_round = false
 	
 	conveyers = {
 		"conveyer1":{

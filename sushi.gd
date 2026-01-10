@@ -41,78 +41,18 @@ func _process(delta: float) -> void:
 		for i in global.conveyers.keys():
 			global.conveyers[i]["speed"] =  global.base_speed * global.conveyers[i]["direction"] + (10 * len(global.conveyers[i]["objects"]) * global.conveyers[i]["direction"])
 	position.x += speed * delta
-	if (position.x >= get_viewport_rect().size.x or position.x <= 0) and ready_to_delete:
-		if global.bonus_round[0] and line != null:
-			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
-			line.queue_free()
-		if get_meta("type") == "food":
-			lose_food()
-		if get_meta("name") == "tobiko" and global.powerup5_debounce:
-			global.lost_limit += 2
-		if get_meta("type") == "ice":
-			global.ice_debounce = false #add a timer to make it true again
-			var chosen_conveyer
-			for conveyer in global.conveyers.values():
-				if conveyer["objects"].has(self):
-					chosen_conveyer = conveyer
-					for object in conveyer["objects"]:
-						if object != null:
-							object.modulate = Color(0,1,1)
-					conveyer["speed"] = 0
-					break
-			visible = false
-			await get_tree().create_timer(2.0).timeout
-			global.ice_debounce = true
-			for object in chosen_conveyer["objects"]:
-				object.modulate = Color(1,1,1)
-		if get_meta("type") == "bomb":
-			for conveyer in global.conveyers.values():
-				if conveyer["objects"].size() > 0 and conveyer["objects"].has(self):
-					conveyer["objects"].erase(self)
-					queue_free()
-					for i in range(2):
-						if conveyer["objects"].is_empty():
-							break
-						var obj = randi_range(0,len(conveyer["objects"])-1)
-						if not is_instance_valid(conveyer["objects"][obj]):
-							conveyer["objects"].remove_at(obj)
-							i-=1
-							continue
-						if conveyer["objects"][obj].get_meta("type") == "food":
-							lose_food()
-						if global.bonus_round[0]:
-							conveyer["objects"][obj].get_meta("line").queue_free()
-							conveyer["objects"][obj].get_meta("brother_if_tied").get_meta("line").queue_free()
-							conveyer["objects"][obj].get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
-						conveyer["objects"][obj].queue_free()
-						conveyer["objects"].remove_at(obj)
-		for conveyer in global.conveyers.values():
-			if conveyer["objects"].has(self):
-				conveyer["objects"].erase(self)
-				break
-		queue_free()
-		return
-	if dragging and timeout_debounce:
-		position = get_global_mouse_position() - offset
-		if global.bonus_round[1]:
-			if dir == "left":
-				position = Vector2(clamp(position.x,limit,get_viewport_rect().size.x-20),clamp(position.y,0,get_viewport_rect().size.y))
-			else:
-				position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
-		else:
-			position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
+	activate_food()
+	set_drag_params()
 		
 func _on_button_button_down() -> void:
 	if global.bonus_round[1]:
-		for i in global.conveyers.values():
-			if i["objects"].has(self):
-				if i["direction"] == -1:
-					dir = "left"
-					limit = get_global_mouse_position().x - 5
-				else:
-					limit = get_global_mouse_position().x + 5
-					dir = "right"
-				break
+		if get_conveyer_ancestry() != null:
+			if get_conveyer_ancestry()["direction"] == -1:
+				dir = "left"
+				limit = get_global_mouse_position().x - 5
+			else:
+				limit = get_global_mouse_position().x + 5
+				dir = "right"
 	else:
 		limit = get_global_mouse_position().x + 5
 	$Button.mouse_filter = Control.MOUSE_FILTER_PASS
@@ -180,16 +120,81 @@ func move_to_conveyer():
 		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,470.0)
 	elif global.mouse_location == 4 and global.trash_stored < global.trash_storage:
 		global.trash_stored += 1
-		for conveyer in global.conveyers.values():
-			if conveyer["objects"].has(self):
-				conveyer["objects"].erase(self)
-				if global.bonus_round[0]  and not (get_meta("brother_if_tied") is NodePath):
-					get_meta("brother_if_tied").queue_free()
-				break
+		if get_conveyer_ancestry() != null:
+			get_conveyer_ancestry()["objects"].erase(self)
+			if global.bonus_round[0]  and not (get_meta("brother_if_tied") is NodePath):
+				get_meta("brother_if_tied").queue_free()
 		queue_free()
 	else:
 		move_conveyer(global.conveyers["conveyer1"]["objects"],global.conveyers["conveyer2"]["objects"],global.conveyers["conveyer3"]["objects"],3,470.0)
 		
 		
 		
-	
+func activate_food():
+	if (position.x >= get_viewport_rect().size.x or position.x <= 0) and ready_to_delete:
+		if global.bonus_round[0] and line != null:
+			get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
+			line.queue_free()
+		if get_meta("type") == "food":
+			lose_food()
+		if get_meta("name") == "tobiko" and global.powerup5_debounce:
+			global.lost_limit += 2
+		if get_meta("type") == "ice":
+			global.ice_debounce = false #add a timer to make it true again
+			var chosen_conveyer
+			
+			if get_conveyer_ancestry() != null:
+				var conveyer = get_conveyer_ancestry()
+				chosen_conveyer = get_conveyer_ancestry()
+				for object in conveyer["objects"]:
+					if object != null:
+						object.modulate = Color(0,1,1)
+				conveyer["speed"] = 0
+			visible = false
+			await get_tree().create_timer(2.0).timeout
+			global.ice_debounce = true
+			for object in chosen_conveyer["objects"]:
+				if object != null:
+					object.modulate = Color(1,1,1)
+		if get_meta("type") == "bomb":
+			for conveyer in global.conveyers.values():
+				if conveyer["objects"].size() > 0 and conveyer["objects"].has(self):
+					conveyer["objects"].erase(self)
+					queue_free()
+					for i in range(2):
+						if conveyer["objects"].is_empty():
+							break
+						var obj = randi_range(0,len(conveyer["objects"])-1)
+						if conveyer["objects"][obj] == null:
+							conveyer["objects"].remove_at(obj)
+							i-=1
+							continue
+						if conveyer["objects"][obj].get_meta("type") == "food":
+							lose_food()
+						if global.bonus_round[0]:
+							conveyer["objects"][obj].get_meta("line").queue_free()
+							conveyer["objects"][obj].get_meta("brother_if_tied").get_meta("line").queue_free()
+							conveyer["objects"][obj].get_meta("brother_if_tied").position.x = get_viewport_rect().size.x + 5
+						conveyer["objects"][obj].queue_free()
+						conveyer["objects"].remove_at(obj)
+		if get_conveyer_ancestry() != null:
+			get_conveyer_ancestry()["objects"].erase(self)
+		queue_free()
+		return
+
+func set_drag_params():
+	if dragging and timeout_debounce:
+		position = get_global_mouse_position() - offset
+		if global.bonus_round[1]:
+			if dir == "left":
+				position = Vector2(clamp(position.x,limit,get_viewport_rect().size.x-20),clamp(position.y,0,get_viewport_rect().size.y))
+			else:
+				position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
+		else:
+			position = Vector2(clamp(position.x,20,limit),clamp(position.y,0,get_viewport_rect().size.y))
+			
+func get_conveyer_ancestry():
+	for conveyer in global.conveyers.values():
+			if conveyer["objects"].has(self):
+				return conveyer
+				break
