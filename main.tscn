@@ -206,9 +206,9 @@ theme_override_colors/font_color = Color(0.11858145, 0.11858136, 0.11858138, 1)
 theme_override_fonts/font = ExtResource("4_272bh")
 
 [node name="FoodLost" type="Label" parent="LevelDisplay"]
-offset_left = -972.0
+offset_left = -944.0
 offset_top = -9.0
-offset_right = -809.0
+offset_right = -781.0
 offset_bottom = 29.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_272bh")

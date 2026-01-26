@@ -45,7 +45,7 @@ func reset():
 	powerup2_debounce = false
 	powerup2_amnt = 10
 	spin_amnt = 1
-	food_lost = 20
+	food_lost = 0
 	lost_limit = 25
 	powerup5_debounce = false
 	leaderboard_stats = [0,0,0,0,0]

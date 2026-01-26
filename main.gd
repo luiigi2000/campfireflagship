@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	$Background/Label.text = str(len(global.conveyers["conveyer1"]["objects"]))
 	$Background/Label2.text = str(len(global.conveyers["conveyer2"]["objects"]))
 	$Background/Label3.text = str(len(global.conveyers["conveyer3"]["objects"]))
-	$LevelDisplay/FoodLost.text = str(global.food_lost) + "/" + str(global.lost_limit)
+	$LevelDisplay/FoodLost.text = "Food lost: " + str(global.food_lost) + "/" + str(global.lost_limit)
 	$Trashcan/TrashLabel.text = str(global.trash_storage - global.trash_stored)
 	
 	if global.food_lost >= global.lost_limit:
@@ -65,7 +65,7 @@ func spawn():
 	global.food_saved+=1
 	var children = spawners.get_children()
 	var count := randi_range(0,children.size()-1)
-	var image := randi_range(1,100)
+	var image := randi_range(1,100) #1-100
 	var instance = preload("res://sushi.tscn").instantiate()
 	if image <= 20:
 		instance.texture = global.food_data["californiaroll"]["image"]
@@ -73,12 +73,10 @@ func spawn():
 		instance.set_meta("name","californiaroll")
 	elif image <= 40:
 		instance.texture = global.food_data["nigiri"]["image"]
-		instance.scale = Vector2(.05,.05)
 		instance.set_meta("type", "food")
 		instance.set_meta("name","nigiri")
 	elif image <= 60:
 		instance.texture = global.food_data["tempura"]["image"]
-		instance.scale = Vector2(.4,.4)
 		instance.set_meta("type", "food")
 		instance.set_meta("name","tempura")
 	elif image <= 80:
