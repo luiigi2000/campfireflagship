@@ -13,6 +13,8 @@ The trash can in the bottom left allows you to discard a food for no loss which 
 After finishing every round, there a shop phase where you can buy a random powerup that can help you after you move forward.
 
 Every round indicated by a star at the top right of the screen is a bonus round to toughen up your game and make you a sushi master (Staggered conveyers or tied foods).
+<img width="324" height="62" alt="image" src="https://github.com/user-attachments/assets/971fe588-748a-40d6-83e8-e1145b80ee45" />
+
 
 Last as long as you can, the conveyers will get faster every round. If you drop 25 food, your out.
 
