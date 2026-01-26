@@ -26,3 +26,6 @@ ALSO DONT DRAG YOUR MOUSE OFF THE SCREEN ( ANOTHER ITCH ISSUE )
 
 Reflection:
 Thank you for playing my game. This is my first major project in godot and although some parts might have been rough, I learned a lot from this game and applied it into my soon to be second campfire flagship project. 
+
+My Game on ITCH:
+[https://itch.io/game/edit/4144604](https://luiigi2000z.itch.io/campfireflagshipdemogame)
