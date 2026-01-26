@@ -19,3 +19,6 @@ Last as long as you can, the conveyers will get faster every round. If you drop 
 PLEASE MAKE SURE YOU RESIZE YOUR SCREEN TO THE CORRECT RATIO (NO GREY BOX AROUND THE GAME WINDOW.
 
 ALSO DONT DRAG YOUR MOUSE OFF THE SCREEN ( ANOTHER ITCH ISSUE )
+
+Reflection:
+Thank you for playing my game. This is my first major project in godot and although some parts might have been rough, I learned a lot from this game and applied it into my soon to be second campfire flagship project. 
