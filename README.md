@@ -7,6 +7,8 @@ The bombs destroy food and the ice freezes them.
 Different foods give you a different amount of calories/points.
 
 The trash can in the bottom left allows you to discard a food for no loss which its storage can be upgraded.
+<img width="116" height="98" alt="image" src="https://github.com/user-attachments/assets/baa5c528-8d91-416b-acf2-5b4ffa894a04" />
+
 
 After finishing every round, there a shop phase where you can buy a random powerup that can help you after you move forward.
 
