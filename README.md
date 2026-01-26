@@ -1,6 +1,6 @@
 Please read my warning messages at the bottom before starting.
 
-The goal of my conveyer game is to drag the foods backwards on the conveyer to prevent them from flying off.
+The goal of my conveyer game is to drag the food backwards on the conveyer to prevent them from flying off.
 
 The bombs destroy food and the ice freezes them.
 
