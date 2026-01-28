@@ -4,6 +4,8 @@ The goal of my conveyer game is to drag the food backwards on the conveyer to pr
 
 Holding a food too long will cause you to lose control of it for a second.
 
+Put three of the same sushi on the same conveyer to give the conveyer a calory multiplier.
+
 The bombs destroy food and the ice freezes them.
 
 Different foods give you a different amount of calories/points.
