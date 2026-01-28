@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b11cb0nlajjyc"]
+[gd_scene load_steps=3 format=3 uid="uid://b11cb0nlajjyc"]
 
 [ext_resource type="Texture2D" uid="uid://bofl1xjtuif8f" path="res://images/Slots/gambling.png" id="1_j4mng"]
 [ext_resource type="Script" uid="uid://bwm80h38fp2aw" path="res://slots.gd" id="1_wychi"]
-[ext_resource type="FontFile" uid="uid://dsfjwnigfts2v" path="res://images/ARCADECLASSIC.TTF" id="3_lcs40"]
 
 [node name="Slots" type="Node2D"]
 script = ExtResource("1_wychi")
@@ -23,7 +22,6 @@ offset_top = 272.0
 offset_right = 958.0
 offset_bottom = 303.0
 scale = Vector2(17.98423, 13.802739)
-theme_override_fonts/font = ExtResource("3_lcs40")
 theme_override_font_sizes/font_size = 36
 action_mode = 0
 
@@ -40,7 +38,6 @@ offset_top = -99.99997
 offset_right = -66.99994
 offset_bottom = -91.99997
 scale = Vector2(21.486353, 22.551834)
-theme_override_fonts/font = ExtResource("3_lcs40")
 action_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -49,7 +46,6 @@ offset_left = -170.0
 offset_top = 118.75
 offset_right = 130.0
 offset_bottom = 243.75
-theme_override_fonts/font = ExtResource("3_lcs40")
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2
 
@@ -64,7 +60,6 @@ offset_top = -88.75
 offset_right = -75.75
 offset_bottom = -80.75
 scale = Vector2(23.00655, 21.548092)
-theme_override_fonts/font = ExtResource("3_lcs40")
 action_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -73,7 +68,6 @@ offset_left = -132.50003
 offset_top = 110.00001
 offset_right = 167.49997
 offset_bottom = 235.0
-theme_override_fonts/font = ExtResource("3_lcs40")
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2
 
@@ -88,7 +82,6 @@ offset_top = -127.5
 offset_right = -112.0
 offset_bottom = -119.5
 scale = Vector2(34.96098, 33.967644)
-theme_override_fonts/font = ExtResource("3_lcs40")
 action_mode = 0
 metadata/_edit_use_anchors_ = true
 
@@ -97,7 +90,6 @@ offset_left = -126.25003
 offset_top = 112.50001
 offset_right = 173.74997
 offset_bottom = 237.5
-theme_override_fonts/font = ExtResource("3_lcs40")
 theme_override_font_sizes/font_size = 25
 autowrap_mode = 2
 

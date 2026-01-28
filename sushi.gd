@@ -82,7 +82,9 @@ func _on_points_timer_timeout() -> void:
 				global.Points+=(global.powerup2_amnt-10)
 				$Powerup2.visible = true
 		$Points.visible = true
-		await get_tree().create_timer(1.0).timeout
+		print("A")
+		await get_tree().create_timer(1.5).timeout
+		print("B")
 		$Points.visible = false
 		$Powerup2.visible = false
 	timer.start()
